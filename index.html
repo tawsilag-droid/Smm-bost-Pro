@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>سوشيال بوست Pro | منصة خدمات التسويق الإلكتروني SMM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { cairo: ['Cairo', 'sans-serif'] },
+          colors: { darkbg: '#0b0f19', cardbg: '#131a2a', borderdark: '#1f293d' }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root { --accent: #6366f1; --accent2: #a855f7; }
+    body { font-family: 'Cairo', sans-serif; background-color: #0b0f19; color: #e2e8f0; }
+    ::-webkit-scrollbar { width: 7px; height: 7px; }
+    ::-webkit-scrollbar-track { background: #0b0f19; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 6px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+    .glass { background: rgba(19, 26, 42, 0.88); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .gradient-text { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .theme-btn { background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+    main { padding-bottom: 5.5rem; }
+  </style>
+  <style id="dynamic-patch-css"></style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- الشريط العلوي الإنتاجي -->
+  <nav class="bg-slate-950/90 backdrop-blur border-b border-indigo-500/20 px-4 py-2.5 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5">
+        <button onclick="goHome()" class="flex items-center gap-2 text-right">
+          <div class="w-9 h-9 rounded-xl theme-btn flex items-center justify-center text-white font-bold text-lg shadow">S</div>
+          <div>
+            <div class="font-extrabold text-sm sm:text-base site-name-label leading-none">سوشيال بوست Pro</div>
+            <span class="text-[10px] text-indigo-400 font-bold sys-version-label">v5.1.0</span>
+          </div>
+        </button>
+
+        <!-- مبدل العملة -->
+        <div class="flex items-center bg-slate-900 border border-slate-700 rounded-lg p-0.5 mr-1">
+          <button onclick="setCurrency('USD')" id="curr-btn-USD" class="px-2 py-1 rounded-md text-[11px] font-bold transition">$ USD</button>
+          <button onclick="setCurrency('EGP')" id="curr-btn-EGP" class="px-2 py-1 rounded-md text-[11px] font-bold transition">ج.م EGP</button>
+        </div>
+
+        <span id="firebase-status-pill" class="hidden px-2 py-0.5 rounded-full text-[10px] font-bold border"></span>
+        <span id="maintenance-badge" class="hidden bg-rose-500/20 text-rose-300 border border-rose-500/40 px-2 py-0.5 rounded-full text-[10px] font-bold">
+          <i class="fa-solid fa-triangle-exclamation ml-1"></i>صيانة
+        </span>
+      </div>
+
+      <div id="topbar-actions" class="flex flex-wrap items-center gap-2"></div>
+    </div>
+  </nav>
+
+  <!-- شريط الإعلانات العام -->
+  <div class="bg-indigo-600/20 border-b border-indigo-500/20 text-indigo-200 text-xs sm:text-sm py-2 px-4 text-center">
+    <i class="fa-solid fa-bullhorn ml-1 text-indigo-400"></i>
+    <span id="announcement-text"></span>
+  </div>
+
+  <!-- ===================== 1. الواجهة الرئيسية للزوار ===================== -->
+  <section id="view-landing" class="flex-1 flex flex-col justify-between">
+    <div class="max-w-7xl mx-auto px-4 py-12 text-center w-full">
+      <span class="inline-block px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-bold mb-5">
+        🚀 المنصة الأسرع لخدمات السوشيال ميديا والموزعين في مصر والوطن العربي
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight mb-6">
+        ضاعف حضورك الرقمي مع <span class="gradient-text">أقوى منصة SMM</span><br class="hidden sm:block" /> بأسعار الجملة وتنفيذ فوري
+      </h1>
+      <p class="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base mb-8">
+        متابعين، مشاهدات، لايكات وتعليقات عالية الجودة لجميع المنصات مع دعم الدفع عبر إنستاباي وفودافون كاش و USDT، وحسابات خاصة للموزعين بخصومات حصرية.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 mb-12">
+        <button onclick="openAuthModal('login')" class="px-8 py-3.5 rounded-xl theme-btn text-white font-bold shadow-xl transition hover:opacity-90">
+          <i class="fa-solid fa-right-to-bracket ml-2"></i> تسجيل الدخول / ابدأ الآن
+        </button>
+        <button onclick="openAuthModal('register')" class="px-8 py-3.5 rounded-xl bg-cardbg border border-borderdark hover:border-indigo-500 font-bold transition">
+          <i class="fa-solid fa-user-plus ml-2"></i> إنشاء حساب جديد
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-14">
+        <div class="glass p-5 rounded-2xl"><div class="text-2xl sm:text-3xl font-extrabold text-indigo-400">+1.4M</div><div class="text-xs text-slate-400 mt-1">طلب مكتمل</div></div>
+        <div class="glass p-5 rounded-2xl"><div class="text-2xl sm:text-3xl font-extrabold text-purple-400" id="landing-min-price">0.05$</div><div class="text-xs text-slate-400 mt-1">أسعار تبدأ من</div></div>
+        <div class="glass p-5 rounded-2xl"><div class="text-2xl sm:text-3xl font-extrabold text-emerald-400">24/7</div><div class="text-xs text-slate-400 mt-1">تنفيذ تلقائي</div></div>
+        <div class="glass p-5 rounded-2xl"><div class="text-2xl sm:text-3xl font-extrabold text-amber-400">+18K</div><div class="text-xs text-slate-400 mt-1">عميل وموزع</div></div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 text-right mb-14">
+        <div class="glass p-6 rounded-2xl">
+          <div class="w-12 h-12 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-bolt"></i></div>
+          <h3 class="font-bold text-lg mb-2">تنفيذ فوري + Drip-Feed</h3>
+          <p class="text-slate-400 text-sm">بدء تنفيذ خلال ثوانٍ مع دعم تقسيم الطلب على دفعات زمنية وتعويض النقص التلقائي.</p>
+        </div>
+        <div class="glass p-6 rounded-2xl">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-handshake"></i></div>
+          <h3 class="font-bold text-lg mb-2">حسابات الموزعين والـ VIP</h3>
+          <p class="text-slate-400 text-sm">خصومات خاصة للموزعين المعتمدين وبرامج ولاء VIP وكوبونات خصم متجددة.</p>
+        </div>
+        <div class="glass p-6 rounded-2xl">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-wallet"></i></div>
+          <h3 class="font-bold text-lg mb-2">إنستاباي، فودافون كاش وتقسيط</h3>
+          <p class="text-slate-400 text-sm">وسائل دفع محلية وعالمية متعددة مع دعم الشحن بالجنيه المصري والدولار الأمريكي.</p>
+        </div>
+      </div>
+
+      <!-- معاينة قائمة الأسعار للزوار -->
+      <div class="glass rounded-2xl p-6 text-right">
+        <div class="flex flex-wrap justify-between items-center gap-3 mb-4">
+          <h2 class="text-xl font-extrabold"><i class="fa-solid fa-tags text-indigo-400 ml-2"></i>أشهر الخدمات المتاحة</h2>
+          <button onclick="openAuthModal('login')" class="text-xs text-indigo-400 hover:underline font-bold">سجل دخولك لطلب الخدمات ⬅</button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-slate-900/80 text-slate-400 text-xs border-b border-borderdark">
+              <tr><th class="p-3">ID</th><th class="p-3">الخدمة</th><th class="p-3">السعر / 1K</th><th class="p-3">الحدود</th></tr>
+            </thead>
+            <tbody id="landing-services-preview" class="divide-y divide-borderdark"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <footer class="border-t border-borderdark py-5 px-4 text-center text-xs text-slate-500">
+      <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+        <span>جميع الحقوق محفوظة © 2026 • <span class="site-name-label">سوشيال بوست Pro</span></span>
+        <button onclick="openAuthModal('admin')" class="text-slate-500 hover:text-amber-400 transition font-semibold">
+          <i class="fa-solid fa-shield-halved ml-1"></i> دخول الإدارة
+        </button>
+      </div>
+    </footer>
+  </section>
+
+  <!-- ===================== 2. هيكل لوحة التحكم (عميل / موزع / أدمن) ===================== -->
+  <section id="view-dashboard" class="hidden flex-1 flex flex-col lg:flex-row max-w-[1600px] w-full mx-auto">
+    <aside class="w-full lg:w-72 bg-cardbg border-b lg:border-b-0 lg:border-l border-borderdark p-4 flex flex-col justify-between shrink-0">
+      <div>
+        <div class="flex items-center justify-between mb-5 pb-4 border-b border-borderdark">
+          <div>
+            <div class="font-extrabold text-base site-name-label">سوشيال بوست Pro</div>
+            <div id="panel-role-badge" class="text-[11px] text-indigo-400 font-semibold">لوحة تحكم العميل</div>
+          </div>
+          <button onclick="document.getElementById('sidebar-nav').classList.toggle('hidden')" class="lg:hidden p-2 rounded-lg bg-slate-800 text-slate-300">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- بطاقة العميل / الموزع -->
+        <div id="client-balance-card" class="bg-gradient-to-br from-indigo-900/50 to-purple-900/40 border border-indigo-500/30 rounded-2xl p-4 mb-5">
+          <div class="flex items-center gap-2.5 mb-3 pb-2.5 border-b border-white/10">
+            <img id="sidebar-user-avatar" src="" alt="" class="hidden w-8 h-8 rounded-full border border-indigo-400 object-cover">
+            <div id="sidebar-user-initial" class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-xs font-bold text-white">ع</div>
+            <div class="min-w-0 flex-1">
+              <div id="sidebar-user-name" class="text-xs font-bold text-white truncate"></div>
+              <div id="sidebar-user-sub" class="text-[10px] text-indigo-200/70 truncate"></div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-xs text-indigo-200 mb-1">
+            <span>الرصيد المتاح</span>
+            <span id="vip-tier-badge" class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-bold"></span>
+          </div>
+          <div class="text-2xl font-extrabold text-white" id="user-balance-display">0.00 ج.م</div>
+          <div class="text-[11px] text-indigo-300/80 mt-0.5" id="user-balance-alt"></div>
+          <button onclick="navigateTab('add-funds')" class="mt-3 w-full py-1.5 rounded-lg theme-btn text-xs font-bold text-white transition hover:opacity-90">+ شحن الرصيد</button>
+        </div>
+
+        <nav id="sidebar-nav" class="space-y-1.5 hidden lg:block"></nav>
+      </div>
+
+      <div class="hidden lg:block pt-4 mt-6 border-t border-borderdark text-xs text-slate-500 text-center">
+        نظام SMM متكامل • <span class="sys-version-label text-indigo-400 font-bold">v5.1.0</span>
+      </div>
+    </aside>
+
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 overflow-x-hidden">
+      <div id="maintenance-client-banner" class="hidden mb-5 p-4 rounded-2xl bg-rose-950/60 border border-rose-500/40 text-rose-200 text-sm flex items-center gap-3">
+        <i class="fa-solid fa-screwdriver-wrench text-rose-400 text-xl"></i>
+        <div><strong>الموقع في وضع الصيانة حالياً:</strong> الطلبات الجديدة متوقفة مؤقتاً لتحديث السيرفرات.</div>
+      </div>
+      <div id="tab-content" class="max-w-6xl mx-auto"></div>
+    </main>
+  </section>
+
+  <!-- نافذة تسجيل الدخول / إنشاء حساب / دخول الإدارة -->
+  <div id="auth-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass rounded-3xl max-w-md w-full p-6 space-y-5 border border-indigo-500/30 shadow-2xl">
+      <div class="flex justify-between items-center border-b border-borderdark pb-3">
+        <div class="flex gap-2 text-xs font-bold">
+          <button onclick="switchAuthTab('login')" id="atab-login" class="px-3 py-1.5 rounded-lg theme-btn text-white">دخول العميل</button>
+          <button onclick="switchAuthTab('register')" id="atab-register" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300">حساب جديد</button>
+          <button onclick="switchAuthTab('admin')" id="atab-admin" class="px-3 py-1.5 rounded-lg bg-slate-800 text-amber-400">الإدارة</button>
+        </div>
+        <button onclick="closeAuthModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div id="auth-modal-body" class="space-y-4"></div>
+    </div>
+  </div>
+
+  <!-- نافذة عامة -->
+  <div id="generic-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass rounded-3xl max-w-2xl w-full p-6 space-y-4 border border-indigo-500/30 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center border-b border-borderdark pb-3">
+        <h3 id="generic-modal-title" class="text-lg font-extrabold text-amber-400"></h3>
+        <button onclick="closeGenericModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div id="generic-modal-body" class="space-y-4"></div>
+    </div>
+  </div>
+
+  <!-- زر الواتساب العائم -->
+  <a id="floating-whatsapp" href="#" target="_blank" class="hidden fixed bottom-4 right-4 z-40 px-4 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white font-bold shadow-2xl flex items-center gap-2 text-sm transition hover:scale-105">
+    <i class="fa-brands fa-whatsapp text-xl"></i><span class="hidden sm:inline">تواصل واتساب</span>
+  </a>
+
+  <div id="toast-container" class="fixed bottom-5 left-5 z-50 space-y-2"></div>
+
+  <script>
+    // ===================== 1. التشفير وإخفاء بيانات الأدمن =====================
+    // مصفوفات مشفرة لبيانات الدخول الافتراضية دون كتابتها كنص صريح
+    const _S1 = [65, 66, 65, 71, 73, 66, 68, 66, 68, 73, 71];
+    const _S2 = [65, 65, 65, 65, 65, 65];
+    const _d = a => a.map(n => String.fromCharCode(n - 17)).join('');
+
+    async function secureHash(input) {
+      const val = String(input || '').trim();
+      if (window.crypto && window.crypto.subtle) {
+        const buf = await window.crypto.subtle.digest('SHA-256', new TextEncoder().encode('smm_salt_2026_' + val));
+        return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+      }
+      // بديل مضمون في البيئات غير الآمنة http غير localhost
+      let h1 = 0x811c9dc5, h2 = 0x1000193;
+      for (let i = 0; i < val.length; i++) {
+        h1 ^= val.charCodeAt(i); h1 = Math.imul(h1, 0x01000193);
+        h2 ^= val.charCodeAt(val.length - 1 - i); h2 = Math.imul(h2, 0x85ebca6b);
+      }
+      return (h1 >>> 0).toString(16) + '_' + (h2 >>> 0).toString(16);
+    }
+
+    async function ensureAdminCredsInitialized() {
+      if (!state.adminAuth || !state.adminAuth.initialized) {
+        state.adminAuth = {
+          initialized: true,
+          phoneHash: await secureHash(_d(_S1)),
+          passHash: await secureHash(_d(_S2))
+        };
+        localStorage.setItem('smm_prod_state_v5_1', JSON.stringify(state));
+      }
+    }
+
+    // ===================== 2. البيانات الافتراضية ومكتبة الـ 18 باتش =====================
+    const DEFAULT_DATA = {
+      settings: {
+        siteName: "سوشيال بوست Pro",
+        defaultCurrency: "EGP",
+        activeCurrency: "EGP",
+        usdToEgpRate: 50.00,
+        announcement: "متاح الآن الدفع عبر إنستاباي وفودافون كاش و USDT + خصومات خاصة للموزعين! 🚀",
+        version: "v5.1.0",
+        themeColor: "indigo",
+        whatsappNumber: "",
+        maintenanceMode: false,
+        vipEnabled: true,
+        couponsEnabled: true,
+        affiliateEnabled: true,
+        dripFeedEnabled: true,
+        autoDispatchApi: false,
+        workerAdminSecret: "",
+        customCss: "",
+        firebaseEnabled: false,
+        googleLoginEnabled: true,
+        firestoreSync: true,
+        firebaseConfig: { apiKey: "", authDomain: "", projectId: "", storageBucket: "", messagingSenderId: "", appId: "" }
+      },
+      adminAuth: { initialized: false, phoneHash: "", passHash: "" },
+      adminSession: false,
+      activeUserId: null,
+      authSession: { loggedIn: false, provider: "", uid: null, name: "", email: "", photoURL: "" },
+      patchHistory: [
+        { version: "v5.1.0", date: "2026-11-25", notes: "الإصدار الإنتاجي الكامل: دخول الأدمن المشفر + نظام الموزعين + جلب API بالدفعات", snapshot: null }
+      ],
+      categories: [
+        { id: "ig", name: "إنستجرام | Instagram", icon: "fa-brands fa-instagram text-pink-500" },
+        { id: "tt", name: "تيك توك | TikTok", icon: "fa-brands fa-tiktok text-cyan-400" },
+        { id: "yt", name: "يوتيوب | YouTube", icon: "fa-brands fa-youtube text-red-500" },
+        { id: "tg", name: "تيليجرام | Telegram", icon: "fa-brands fa-telegram text-sky-400" },
+        { id: "fb", name: "فيسبوك | Facebook", icon: "fa-brands fa-facebook text-blue-500" }
+      ],
+      services: [
+        { id: 101, catId: "ig", name: "متابعين إنستجرام [جودة عالية + ضمان 30 يوم] ⚡", rate: 1.20, min: 100, max: 50000, desc: "سرعة 5K-10K يومياً، تعويض تلقائي في حال النقص.", active: true, badge: "الأكثر مبيعاً" },
+        { id: 102, catId: "ig", name: "لايكات إنستجرام ريلز وبوستات [فوري] ❤️", rate: 0.35, min: 50, max: 100000, desc: "تنفيذ فوري خلال دقائق.", active: true },
+        { id: 103, catId: "ig", name: "مشاهدات ريلز إنستجرام [سريع جداً] 👁️", rate: 0.12, min: 500, max: 1000000, desc: "مشاهدات من الاكسبلور.", active: true },
+        { id: 201, catId: "tt", name: "متابعين تيك توك [ثابتين + حقيقيين] 🎵", rate: 2.50, min: 100, max: 30000, desc: "بدء خلال 15 دقيقة، ثبات عالٍ.", active: true },
+        { id: 202, catId: "tt", name: "مشاهدات تيك توك [فوري - أرخص سعر] 🔥", rate: 0.05, min: 1000, max: 5000000, desc: "سرعة فائقة تصل إلى مليون مشاهدة باليوم.", active: true, badge: "أرخص سعر" },
+        { id: 301, catId: "yt", name: "مشتركين يوتيوب [ضمان عدم النقص] ▶️", rate: 8.50, min: 100, max: 10000, desc: "مناسب لتحقيق شروط الربح.", active: true },
+        { id: 302, catId: "yt", name: "ساعات مشاهدة يوتيوب 4000 ساعة ⏱️", rate: 14.00, min: 100, max: 4000, desc: "يشترط وجود فيديو أطول من 60 دقيقة.", active: true },
+        { id: 401, catId: "tg", name: "أعضاء قنوات تيليجرام [سريع + بدون هبوط] ✈️", rate: 0.95, min: 200, max: 100000, desc: "تعمل للقنوات العامة والخاصة.", active: true },
+        { id: 501, catId: "fb", name: "متابعين ولايكات صفحات فيسبوك 👍", rate: 1.80, min: 100, max: 50000, desc: "ضمان 30 يوم، بدء خلال ساعة.", active: true }
+      ],
+      coupons: [
+        { code: "WELCOME10", discount: 10, active: true, minUSD: 0.5 },
+        { code: "VIP15", discount: 15, active: true, minUSD: 2 }
+      ],
+      orders: [],
+      deposits: [],
+      users: [],
+      tickets: [],
+      providers: [
+        { id: 1, name: "JustAnotherPanel (JAP)", targetApiUrl: "https://justanotherpanel.com/api/v2", proxyUrl: "", slot: 1, markupPercent: 30, balance: "—", status: "بانتظار Worker" },
+        { id: 2, name: "Peakerr SMM", targetApiUrl: "https://peakerr.com/api/v2", proxyUrl: "", slot: 2, markupPercent: 25, balance: "—", status: "بانتظار Worker" }
+      ]
+    };
+
+    const PATCH_PRESETS = [
+      {
+        title: "الربط بـ Firebase وتسجيل الدخول بجوجل",
+        badge: "Firebase + Google",
+        cat: "system",
+        desc: "تفعيل مصادقة جوجل Google Sign-In ومزامنة المستخدمين والطلبات سحابياً مع Firestore.",
+        payload: {
+          version: "v5.2.0-FirebaseGoogle",
+          notes: "تفعيل الربط بقاعدة بيانات Firebase وتسجيل الدخول بحساب جوجل",
+          settings: {
+            firebaseEnabled: true, googleLoginEnabled: true, firestoreSync: true,
+            firebaseConfig: { apiKey: "YOUR_FIREBASE_API_KEY", authDomain: "YOUR_PROJECT_ID.firebaseapp.com", projectId: "YOUR_PROJECT_ID", storageBucket: "YOUR_PROJECT_ID.firebasestorage.app", messagingSenderId: "YOUR_SENDER_ID", appId: "YOUR_APP_ID" }
+          }
+        }
+      },
+      {
+        title: "تفعيل مزود API حقيقي عبر Cloudflare Worker",
+        badge: "Real API Sync",
+        cat: "system",
+        desc: "تفعيل الإرسال التلقائي للطلبات وربط Cloudflare Worker المحصن.",
+        payload: {
+          version: "v5.3.0-RealAPI",
+          notes: "تفعيل الإرسال التلقائي للطلبات وربط Cloudflare Worker",
+          settings: { autoDispatchApi: true },
+          addProviders: [{ id: 3, name: "مزود API الحقيقي (Cloudflare)", targetApiUrl: "https://justanotherpanel.com/api/v2", proxyUrl: "https://YOUR-WORKER.workers.dev", slot: 1, markupPercent: 30, balance: "اضغط فحص", status: "جاهز للربط" }]
+        }
+      },
+      {
+        title: "باقة استهداف مصر والخليج العربي",
+        badge: "مصر والخليج",
+        cat: "services",
+        desc: "قسم خدمات عربية حقيقية مستهدفة لمصر والخليج + كوبون EGYPT15.",
+        payload: {
+          version: "v5.3.1-EgyptGulf",
+          notes: "إضافة باقة الخدمات العربية المستهدفة (مصر والخليج) + كوبون EGYPT15",
+          addCategories: [{ id: "arab", name: "استهداف مصر والخليج | Geo-Targeted", icon: "fa-solid fa-earth-africa text-emerald-400" }],
+          addServices: [
+            { id: 1001, catId: "arab", name: "متابعين إنستجرام [حسابات مصرية حقيقية 100%] 🇪🇬", rate: 4.80, min: 100, max: 20000, desc: "حسابات مصرية نشطة بأسماء وصور حقيقية، ثبات عالٍ.", active: true, badge: "مطلوب جداً" },
+            { id: 1002, catId: "arab", name: "لايكات ومشاهدات تيك توك [استهداف مصر والسعودية] 🔥", rate: 1.60, min: 500, max: 100000, desc: "يرفع الفيديو في تريند مصر والخليج بسرعة.", active: true, badge: "تريند" },
+            { id: 1003, catId: "arab", name: "تعليقات عربية إيجابية مخصصة [إنستجرام / فيسبوك] 💬", rate: 6.50, min: 20, max: 5000, desc: "تعليقات عربية واقعية لزيادة ثقة العملاء.", active: true }
+          ],
+          addCoupons: [{ code: "EGYPT15", discount: 15, active: true, minUSD: 1.5 }],
+          settings: { announcement: "🇪🇬 وصل حديثاً: قسم الخدمات المصرية والخليجية الحقيقية! استخدم كود EGYPT15 لخصم 15%" }
+        }
+      },
+      {
+        title: "حملة إنستاباي وفودافون كاش مصر",
+        badge: "دفع مصري",
+        cat: "promo",
+        desc: "كوبون INSTA10 + تفعيل زر واتساب + إعلان الشحن بدون رسوم.",
+        payload: {
+          version: "v5.3.2-EgyptPay",
+          notes: "حملة شحن إنستاباي وفودافون كاش + تفعيل زر واتساب",
+          addCoupons: [{ code: "INSTA10", discount: 10, active: true, minUSD: 1 }],
+          settings: { themeColor: "emerald", whatsappNumber: "201068131386", announcement: "💳 اشحن الآن عبر إنستاباي أو فودافون كاش 0% رسوم إدارية + خصم 10% بكود INSTA10!" }
+        }
+      },
+      {
+        title: "التصميم الملكي الفاخر (Royal Gold)",
+        badge: "UI فاخر",
+        cat: "ui",
+        desc: "ثيم ذهبي ملكي Amber + إضاءات وحركات احترافية للبطاقات والجداول.",
+        payload: {
+          version: "v5.3.3-RoyalGold",
+          notes: "تطبيق الثيم الذهبي الملكي وتأثيرات الفخامة للبطاقات",
+          settings: { themeColor: "amber", vipEnabled: true },
+          customCss: ".glass { border-color: rgba(245, 158, 11, 0.22); box-shadow: 0 10px 35px rgba(245, 158, 11, 0.07); transition: transform 0.25s ease, border-color 0.25s ease; } .glass:hover { border-color: rgba(245, 158, 11, 0.5); transform: translateY(-2px); }"
+        }
+      },
+      {
+        title: "وضع الموزعين والوكالات (Wholesale)",
+        badge: "جملة -18%",
+        cat: "promo",
+        desc: "خصم 18% على جميع الأسعار لجذب الموزعين + كوبون RESELLER25.",
+        payload: {
+          version: "v5.3.4-Wholesale",
+          notes: "تفعيل أسعار الجملة للموزعين (-18%) وكوبون RESELLER25",
+          priceAdjustmentPercent: -18,
+          addCoupons: [{ code: "RESELLER25", discount: 25, active: true, minUSD: 10 }],
+          settings: { themeColor: "cyan", announcement: "⚡ أسبوع الموزعين: تم خفض أسعار الجملة بنسبة 18% + خصم 25% بكود RESELLER25!" }
+        }
+      },
+      {
+        title: "خدمات الجيمينج والبودكاست",
+        badge: "Discord/Spotify",
+        cat: "services",
+        desc: "إضافة منصات Discord و Spotify و Kick & Twitch بأسعار منافسة.",
+        payload: {
+          version: "v5.3.5-GamingAudio",
+          notes: "إضافة منصات ديسكورد، سبوتيفاي، تويتش، وكيك",
+          addCategories: [
+            { id: "dc", name: "ديسكورد | Discord", icon: "fa-brands fa-discord text-indigo-400" },
+            { id: "sp", name: "سبوتيفاي | Spotify", icon: "fa-brands fa-spotify text-emerald-400" },
+            { id: "st", name: "بث مباشر | Twitch & Kick", icon: "fa-brands fa-twitch text-purple-400" }
+          ],
+          addServices: [
+            { id: 1101, catId: "dc", name: "أعضاء سيرفر ديسكورد [أونلاين + أوفلاين مستقر] 🛡️", rate: 5.50, min: 50, max: 10000, desc: "دخول فوري للسيرفرات مع ثبات.", active: true, badge: "جديد" },
+            { id: 1102, catId: "sp", name: "استماعات سبوتيفاي للبودكاست والأغاني [سريع] 🎧", rate: 1.10, min: 1000, max: 500000, desc: "استماعات آمنة ومقبولة في الإحصائيات.", active: true },
+            { id: 1103, catId: "st", name: "مشاهدين بث مباشر Kick & Twitch [ساعتين] 🔴", rate: 4.20, min: 50, max: 3000, desc: "رفع ترتيب البث في الصفحة الرئيسية.", active: true, badge: "VIP" }
+          ]
+        }
+      },
+      {
+        title: "باقات تحقيق الربح (YouTube & TikTok)",
+        badge: "لصناع المحتوى",
+        cat: "services",
+        desc: "باقات 1000 مشترك يوتيوب و 10K متابع تيك توك لفتح البث والربح.",
+        payload: {
+          version: "v5.3.6-Monetization",
+          notes: "إضافة باقات تفعيل الربح ليوتيوب وتيك توك",
+          addServices: [
+            { id: 303, catId: "yt", name: "باقة تحقيق شروط اليوتيوب [1000 مشترك + ضمان] ✅", rate: 11.50, min: 100, max: 5000, desc: "معدل هبوط شبه معدوم ومتوافق مع مراجعة القناة.", active: true, badge: "الأعلى قيمة" },
+            { id: 203, catId: "tt", name: "باقة تيك توك 10K متابع لفتح البث وصندوق المبدعين 🎥", rate: 2.90, min: 1000, max: 50000, desc: "تنفيذ سريع ومضمون لفتح ميزة اللايف.", active: true, badge: "للمبدعين" }
+          ]
+        }
+      },
+      {
+        title: "خدمات تيليجرام المتقدمة (Boosts)",
+        badge: "Telegram Pro",
+        cat: "services",
+        desc: "إضافة تعزيزات قنوات تيليجرام (Boosts) وتفاعلات إيموجي تلقائية.",
+        payload: {
+          version: "v5.3.7-TelegramPro",
+          notes: "إضافة خدمات تعزيز قنوات تيليجرام والتفاعلات التلقائية",
+          addServices: [
+            { id: 402, catId: "tg", name: "تعزيزات قنوات تيليجرام لفتح الستوري (Boosts) 🚀", rate: 18.00, min: 10, max: 1000, desc: "بوستات ترفع مستوى القناة لفتح مزايا الستوري والألوان.", active: true, badge: "ربح عالٍ" },
+            { id: 403, catId: "tg", name: "تفاعلات إيموجي تلقائية على آخر 10 منشورات 🔥❤️👍", rate: 0.65, min: 100, max: 50000, desc: "تفاعل فوري متناسق لزيادة مصداقية القناة.", active: true }
+          ]
+        }
+      },
+      {
+        title: "إضافة منصتي X و Threads",
+        badge: "خدمات جديدة",
+        cat: "services",
+        desc: "إضافة أقسام منصة X (تويتر) و Threads مع 3 خدمات سريعة.",
+        payload: {
+          version: "v5.3.8-SocialPack",
+          notes: "إضافة أقسام وخدمات X (Twitter) و Threads",
+          addCategories: [
+            { id: "x", name: "منصة X | Twitter", icon: "fa-brands fa-x-twitter text-slate-200" },
+            { id: "th", name: "ثريدز | Threads", icon: "fa-brands fa-threads text-purple-400" }
+          ],
+          addServices: [
+            { id: 801, catId: "x", name: "متابعين منصة X [ضمان 30 يوم] ✖️", rate: 3.20, min: 100, max: 20000, desc: "سرعة متوسطة وثبات ممتاز.", active: true, badge: "جديد" },
+            { id: 802, catId: "x", name: "مشاهدات وتفاعل تغريدات X [فوري] 🚀", rate: 0.25, min: 500, max: 500000, desc: "مشاهدات فورية لرفع الريتش.", active: true },
+            { id: 901, catId: "th", name: "متابعين Threads [حقيقي + سريع] 🧵", rate: 2.10, min: 100, max: 30000, desc: "بدء فوري.", active: true, badge: "جديد" }
+          ]
+        }
+      },
+      {
+        title: "العرض الخاطف 24 ساعة (Flash Sale)",
+        badge: "خصم -25%",
+        cat: "promo",
+        desc: "تخفيض فوري 25% + ثيم وردي ناري + كوبون FLASH25.",
+        payload: {
+          version: "v5.3.9-FlashSale",
+          notes: "تخفيض خاطف 25% على جميع الخدمات لمدة 24 ساعة",
+          priceAdjustmentPercent: -25,
+          addCoupons: [{ code: "FLASH25", discount: 10, active: true, minUSD: 1 }],
+          settings: { themeColor: "rose", announcement: "⏳ عرض خاطف لـ 24 ساعة فقط: خصم فوري 25% على جميع المنصات + كود FLASH25!" }
+        }
+      },
+      {
+        title: "حزمة التسعير الذكي والخصم (-10%)",
+        badge: "تخفيضات",
+        cat: "promo",
+        desc: "خصم 10% على كافة الخدمات + كوبون TIKTOK20.",
+        payload: {
+          version: "v5.4.0-Promo",
+          notes: "حزمة التسعير الذكي: خصم 10% شامل وكوبون TIKTOK20",
+          priceAdjustmentPercent: -10,
+          addCoupons: [{ code: "TIKTOK20", discount: 20, active: true, minUSD: 1 }],
+          settings: { announcement: "🎉 عرض خاص: تم تخفيض كافة الأسعار 10% + استخدم كود TIKTOK20 لخصم 20%!" }
+        }
+      },
+      {
+        title: "حزمة البلاك فرايداي (ثيم وردي)",
+        badge: "موسمي",
+        cat: "promo",
+        desc: "تغيير الثيم للوردي Rose، خصم 15%، وإضافة كوبون BF15.",
+        payload: {
+          version: "v5.4.1-BlackFriday",
+          notes: "حزمة البلاك فرايداي الشاملة",
+          priceAdjustmentPercent: -15,
+          settings: { themeColor: "rose", announcement: "🔥 عروض البلاك فرايداي بدأت! خصم 15% على كل الخدمات + كود BF15" },
+          addCoupons: [{ code: "BF15", discount: 15, active: true, minUSD: 1 }]
+        }
+      },
+      {
+        title: "تحسين هامش الربح (+12%)",
+        badge: "أرباح",
+        cat: "promo",
+        desc: "زيادة الأسعار 12% وتحديث سعر صرف الدولار إلى 51 ج.م.",
+        payload: {
+          version: "v5.4.2-MarginBoost",
+          notes: "تحديث هوامش الربح (+12%) وتحديث سعر الصرف",
+          priceAdjustmentPercent: 12,
+          settings: { usdToEgpRate: 51.00 }
+        }
+      },
+      {
+        title: "تفعيل زر الواتساب وثيم الزمرد",
+        badge: "تصميم + دعم",
+        cat: "ui",
+        desc: "تغيير ثيم الموقع إلى Emerald الأخضر وتفعيل زر واتساب عائم.",
+        payload: {
+          version: "v5.4.3-EmeraldUX",
+          notes: "تفعيل ثيم الزمرد وزر الواتساب العائم",
+          settings: { themeColor: "emerald", whatsappNumber: "201068131386" },
+          customCss: ".glass { box-shadow: 0 8px 32px rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.22); }"
+        }
+      },
+      {
+        title: "حزمة ولاء العملاء (هدية 2$)",
+        badge: "مكافآت",
+        cat: "promo",
+        desc: "إهداء 2 دولار رصيد مجاني لجميع الأعضاء النشطين.",
+        payload: {
+          version: "v5.4.4-Loyalty",
+          notes: "توزيع 2$ بونص على جميع الأعضاء النشطين",
+          bonusAllUsersUSD: 2.00,
+          settings: { announcement: "🎁 مبروك! تم إضافة 2$ رصيد هدية مجانية لحسابات جميع العملاء النشطين." }
+        }
+      },
+      {
+        title: "تفعيل وضع الصيانة الطارئ",
+        badge: "صيانة",
+        cat: "system",
+        desc: "إيقاف الطلبات الجديدة للعملاء مؤقتاً مع إظهار تنبيه الصيانة.",
+        payload: {
+          version: "v5.4.5-Hotfix",
+          notes: "تفعيل وضع الصيانة لتحديث سيرفرات API",
+          settings: { maintenanceMode: true, announcement: "⚠️ جاري صيانة وتحديث بعض سيرفرات الخدمة، سنعود خلال دقائق." }
+        }
+      },
+      {
+        title: "إعادة الضبط النظيف للوضع القياسي",
+        badge: "Reset UI",
+        cat: "system",
+        desc: "إلغاء الصيانة، إعادة الثيم Indigo القياسي، وإزالة الـ CSS المخصص.",
+        payload: {
+          version: "v5.1.0-Standard",
+          notes: "إيقاف الصيانة وإعادة الثيم القياسي الهادئ",
+          settings: { themeColor: "indigo", maintenanceMode: false, announcement: "أهلاً بكم في منصتنا! جميع السيرفرات تعمل الآن بأقصى سرعة 24/7 🚀" },
+          customCss: ""
+        }
+      }
+    ];
+
+    const WORKER_CODE_LINES = [
+      'export default {',
+      '  async fetch(request, env) {',
+      '    const allowedOrigin = env.ALLOWED_ORIGIN || "*";',
+      '    const corsHeaders = {',
+      '      "Access-Control-Allow-Origin": allowedOrigin,',
+      '      "Access-Control-Allow-Methods": "POST, OPTIONS",',
+      '      "Access-Control-Allow-Headers": "Content-Type, X-Admin-Secret"',
+      '    };',
+      '    if (request.method === "OPTIONS") return new Response(null, { headers: corsHeaders });',
+      '    try {',
+      '      const body = await request.json();',
+      '      const action = body.action || "services";',
+      '      if (["balance", "services"].includes(action) && env.ADMIN_SECRET) {',
+      '        if (request.headers.get("X-Admin-Secret") !== env.ADMIN_SECRET) {',
+      '          return new Response(JSON.stringify({ error: "غير مصرح" }), { status: 401, headers: corsHeaders });',
+      '        }',
+      '      }',
+      '      const apiKey = body.providerSlot === 2 ? env.KEY_2 : env.KEY_1;',
+      '      if (!apiKey) throw new Error("API Key غير مهيأ في متغيرات Cloudflare");',
+      '      const form = new URLSearchParams({ key: apiKey, action });',
+      '      if (body.service) form.set("service", String(body.service));',
+      '      if (body.link) form.set("link", String(body.link));',
+      '      if (body.quantity) form.set("quantity", String(body.quantity));',
+      '      if (body.order) form.set("order", String(body.order));',
+      '      const res = await fetch(body.apiUrl, { method: "POST", body: form });',
+      '      const data = await res.json();',
+      '      if (action === "services" && Array.isArray(data)) {',
+      '        const kw = (body.keyword || "").toLowerCase();',
+      '        const filtered = kw ? data.filter(s => `${s.name} ${s.category}`.toLowerCase().includes(kw)) : data;',
+      '        const offset = Number(body.offset || 0);',
+      '        const limit = Math.min(100, Number(body.limit || 50));',
+      '        return new Response(JSON.stringify({ total: filtered.length, offset, items: filtered.slice(offset, offset + limit) }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });',
+      '      }',
+      '      return new Response(JSON.stringify(data), { headers: { ...corsHeaders, "Content-Type": "application/json" } });',
+      '    } catch (e) {',
+      '      return new Response(JSON.stringify({ error: e.message }), { status: 500, headers: corsHeaders });',
+      '    }',
+      '  }',
+      '};'
+    ].join('\n');
+
+    const THEME_MAP = {
+      indigo: { c1: '#6366f1', c2: '#a855f7' },
+      emerald: { c1: '#10b981', c2: '#06b6d4' },
+      rose: { c1: '#f43f5e', c2: '#ec4899' },
+      amber: { c1: '#f59e0b', c2: '#ea580c' },
+      cyan: { c1: '#06b6d4', c2: '#3b82f6' }
+    };
+
+    function loadInitialState() {
+      try {
+        const raw = localStorage.getItem('smm_prod_state_v5_1');
+        if (!raw) return structuredClone(DEFAULT_DATA);
+        const parsed = JSON.parse(raw);
+        return {
+          ...structuredClone(DEFAULT_DATA),
+          ...parsed,
+          settings: {
+            ...DEFAULT_DATA.settings,
+            ...(parsed.settings || {}),
+            firebaseConfig: { ...DEFAULT_DATA.settings.firebaseConfig, ...(parsed.settings?.firebaseConfig || {}) }
+          },
+          adminAuth: { ...DEFAULT_DATA.adminAuth, ...(parsed.adminAuth || {}) },
+          authSession: { ...DEFAULT_DATA.authSession, ...(parsed.authSession || {}) }
+        };
+      } catch {
+        return structuredClone(DEFAULT_DATA);
+      }
+    }
+
+    let state = loadInitialState();
+    let currentView = 'landing'; // landing | client | admin
+    let currentTab = 'new-order';
+    let selectedPatchFile = null;
+    let patchFilterCat = 'all';
+    let serviceCatFilter = 'all';
+    let currentAuthTab = 'login';
+    let fbApp = null, fbAuth = null, fbDb = null, fbMods = null, fbStatus = 'disabled';
+
+    // ===================== 3. دوال مساعدة =====================
+    function esc(str) { return String(str ?? '').replace(/[&<>"']/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
+    function getActiveUser() { return state.users.find(u => u.id === state.activeUserId) || null; }
+    function getCurrSymbol(code = state.settings.activeCurrency) { return code === 'EGP' ? 'ج.م' : '$'; }
+    function convertAmount(usd, code = state.settings.activeCurrency) { return code === 'EGP' ? usd * state.settings.usdToEgpRate : usd; }
+    function formatMoney(usd, decimals = 2) { return `${convertAmount(usd).toFixed(decimals)} ${getCurrSymbol()}`; }
+
+    function getEffectiveDiscountInfo(user) {
+      if (!user) return { vipName: 'قياسي', vipPct: 0, resellerPct: 0, totalAutoPct: 0 };
+      let vipName = 'قياسي', vipPct = 0;
+      const spent = user.spent || 0;
+      if (state.settings.vipEnabled) {
+        if (spent >= 200) { vipName = 'VIP ماسي 💎'; vipPct = 12; }
+        else if (spent >= 75) { vipName = 'VIP ذهبي 👑'; vipPct = 7; }
+        else if (spent >= 25) { vipName = 'VIP فضي ⭐'; vipPct = 3; }
+        else { vipName = 'VIP برونزي'; vipPct = 0; }
+      }
+      const resellerPct = user.role === 'reseller' ? (parseFloat(user.resellerDiscount) || 0) : 0;
+      return { vipName, vipPct, resellerPct };
+    }
+
+    function applyThemeAndCss() {
+      const t = THEME_MAP[state.settings.themeColor] || THEME_MAP.indigo;
+      document.documentElement.style.setProperty('--accent', t.c1);
+      document.documentElement.style.setProperty('--accent2', t.c2);
+      document.getElementById('dynamic-patch-css').textContent = state.settings.customCss || '';
+      const waBtn = document.getElementById('floating-whatsapp');
+      const wa = (state.settings.whatsappNumber || '').replace(/\D/g, '');
+      if (wa) { waBtn.href = `https://wa.me/${wa}`; waBtn.classList.remove('hidden'); }
+      else waBtn.classList.add('hidden');
+    }
+
+    function setCurrency(curr) {
+      state.settings.activeCurrency = curr;
+      saveState();
+      showToast(`تم تغيير العملة إلى ${curr === 'EGP' ? 'الجنيه المصري (ج.م)' : 'الدولار الأمريكي ($)'}`, "info");
+      if (currentView !== 'landing') renderCurrentView(); else renderLandingPreview();
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem('smm_prod_state_v5_1', JSON.stringify(state));
+      } catch {
+        showToast('تنبيه: مساحة التخزين ممتلئة! قلل عدد الخدمات المستوردة أو نظّف نقاط الاستعادة.', 'error');
+      }
+      updateGlobalUI();
+      syncActiveUserToFirestore();
+    }
+
+    function showToast(msg, type = 'info') {
+      const colors = { success: 'bg-emerald-900/95 border-emerald-500 text-emerald-100', error: 'bg-rose-900/95 border-rose-500 text-rose-100', info: 'bg-indigo-900/95 border-indigo-500 text-indigo-100' };
+      const icons = { success: 'fa-circle-check text-emerald-400', error: 'fa-circle-exclamation text-rose-400', info: 'fa-circle-info text-indigo-400' };
+      const toast = document.createElement('div');
+      toast.className = `flex items-center gap-3 px-4 py-3 rounded-xl border shadow-2xl text-sm font-semibold transition-all duration-300 ${colors[type]}`;
+      toast.innerHTML = `<i class="fa-solid ${icons[type]} text-lg"></i> <span>${esc(msg)}</span>`;
+      document.getElementById('toast-container').appendChild(toast);
+      setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3500);
+    }
+
+    function openGenericModal(title, html) {
+      document.getElementById('generic-modal-title').innerHTML = title;
+      document.getElementById('generic-modal-body').innerHTML = html;
+      document.getElementById('generic-modal').classList.remove('hidden');
+    }
+    function closeGenericModal() { document.getElementById('generic-modal').classList.add('hidden'); }
+
+    function updateGlobalUI() {
+      applyThemeAndCss();
+      document.querySelectorAll('.site-name-label').forEach(el => el.textContent = state.settings.siteName);
+      document.querySelectorAll('.sys-version-label').forEach(el => el.textContent = state.settings.version);
+      document.getElementById('announcement-text').textContent = state.settings.announcement;
+
+      const isMaint = !!state.settings.maintenanceMode;
+      document.getElementById('maintenance-badge').classList.toggle('hidden', !isMaint);
+      document.getElementById('maintenance-client-banner').classList.toggle('hidden', !(isMaint && currentView === 'client'));
+
+      const fbPill = document.getElementById('firebase-status-pill');
+      if (state.settings.firebaseEnabled) {
+        fbPill.classList.remove('hidden');
+        fbPill.className = fbStatus === 'connected' ? 'px-2 py-0.5 rounded-full text-[10px] font-bold border bg-emerald-500/20 text-emerald-300 border-emerald-500/40' : 'px-2 py-0.5 rounded-full text-[10px] font-bold border bg-amber-500/20 text-amber-300 border-amber-500/40';
+        fbPill.innerHTML = fbStatus === 'connected' ? '<i class="fa-solid fa-fire ml-1"></i>Firebase متصل' : '<i class="fa-solid fa-fire ml-1"></i>Firebase';
+      } else fbPill.classList.add('hidden');
+
+      const curr = state.settings.activeCurrency;
+      ['USD', 'EGP'].forEach(c => {
+        const btn = document.getElementById(`curr-btn-${c}`);
+        btn.className = c === curr ? 'px-2 py-1 rounded-md text-[11px] font-bold transition theme-btn text-white shadow' : 'px-2 py-1 rounded-md text-[11px] font-bold transition text-slate-400 hover:text-white';
+      });
+
+      // أزرار الشريط العلوي حسب حالة الدخول
+      const topActions = document.getElementById('topbar-actions');
+      const u = getActiveUser();
+      let btns = '';
+      if (state.adminSession) {
+        btns += `<button onclick="enterAdminPanel()" class="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-300 border border-amber-500/40 text-xs font-bold"><i class="fa-solid fa-crown ml-1"></i> لوحة الأدمن</button>`;
+        btns += `<button onclick="adminLogout()" class="px-2.5 py-1.5 rounded-lg bg-rose-950/70 text-rose-300 border border-rose-500/30 text-xs font-bold">خروج الأدمن</button>`;
+      }
+      if (u && state.authSession.loggedIn) {
+        btns += `<button onclick="enterClientPanel()" class="px-3 py-1.5 rounded-lg theme-btn text-white text-xs font-bold flex items-center gap-1.5">${u.photoURL ? `<img src="${esc(u.photoURL)}" class="w-4 h-4 rounded-full">` : '<i class="fa-solid fa-user"></i>'} <span>${esc(u.name)}</span></button>`;
+        btns += `<button onclick="clientLogout()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold">خروج</button>`;
+      } else if (!state.adminSession) {
+        btns += `<button onclick="openAuthModal('login')" class="px-3.5 py-1.5 rounded-lg theme-btn text-white text-xs font-bold">تسجيل الدخول</button>`;
+        btns += `<button onclick="openAuthModal('register')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold">حساب جديد</button>`;
+      }
+      topActions.innerHTML = btns;
+
+      // بطاقة العميل الجانبية
+      if (u) {
+        const disc = getEffectiveDiscountInfo(u);
+        document.getElementById('vip-tier-badge').textContent = u.role === 'reseller' ? `موزع (خصم ${disc.resellerPct}%)` : (disc.vipPct ? `${disc.vipName} (-${disc.vipPct}%)` : disc.vipName);
+        document.getElementById('user-balance-display').textContent = formatMoney(u.balance, 2);
+        const altCurr = curr === 'EGP' ? 'USD' : 'EGP';
+        document.getElementById('user-balance-alt').textContent = `يعادل تقريباً: ${convertAmount(u.balance, altCurr).toFixed(2)} ${getCurrSymbol(altCurr)}`;
+        document.getElementById('sidebar-user-name').textContent = u.name;
+        document.getElementById('sidebar-user-sub').textContent = u.phone || u.email || '';
+        const av = document.getElementById('sidebar-user-avatar'), ini = document.getElementById('sidebar-user-initial');
+        if (u.photoURL) { av.src = u.photoURL; av.classList.remove('hidden'); ini.classList.add('hidden'); }
+        else { av.classList.add('hidden'); ini.classList.remove('hidden'); ini.textContent = (u.name || 'ع').trim().charAt(0); }
+      }
+
+      const minEl = document.getElementById('landing-min-price');
+      if (minEl) minEl.textContent = formatMoney(0.05, 2);
+    }
+
+    function renderLandingPreview() {
+      const tbody = document.getElementById('landing-services-preview');
+      if (!tbody) return;
+      tbody.innerHTML = state.services.filter(s => s.active).slice(0, 6).map(s => `
+        <tr class="hover:bg-slate-800/30">
+          <td class="p-3 font-bold text-indigo-400">#${s.id}</td>
+          <td class="p-3 font-semibold">${esc(s.name)}</td>
+          <td class="p-3 font-bold text-emerald-400">${formatMoney(s.rate, 2)}</td>
+          <td class="p-3 text-xs text-slate-400">${s.min.toLocaleString()} - ${s.max.toLocaleString()}</td>
+        </tr>`).join('');
+    }
+
+    // ===================== 4. المصادقة (عميل / موزع / جوجل / أدمن) =====================
+    function openAuthModal(tab = 'login') {
+      currentAuthTab = tab;
+      document.getElementById('auth-modal').classList.remove('hidden');
+      switchAuthTab(tab);
+    }
+    function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden'); }
+
+    function switchAuthTab(tab) {
+      currentAuthTab = tab;
+      ['login', 'register', 'admin'].forEach(t => {
+        const el = document.getElementById(`atab-${t}`);
+        el.className = t === tab
+          ? (t === 'admin' ? 'px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-extrabold' : 'px-3 py-1.5 rounded-lg theme-btn text-white')
+          : 'px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300';
+      });
+      const body = document.getElementById('auth-modal-body');
+
+      if (tab === 'login') {
+        body.innerHTML = `
+          <form onsubmit="handleClientLogin(event)" class="space-y-3">
+            <div><label class="text-xs font-bold block mb-1">رقم الهاتف أو البريد الإلكتروني</label><input type="text" id="login-ident" required placeholder="01xxxxxxxxx أو email@..." class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm" dir="ltr"></div>
+            <div><label class="text-xs font-bold block mb-1">كلمة المرور</label><input type="password" id="login-pass" required placeholder="••••••••" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm" dir="ltr"></div>
+            <button type="submit" class="w-full py-3 rounded-xl theme-btn text-white font-bold text-sm">دخول لحسابي</button>
+          </form>
+          ${state.settings.googleLoginEnabled ? `
+          <div class="text-center text-xs text-slate-500">أو</div>
+          <button onclick="signInWithGoogleReal()" class="w-full py-3 rounded-xl bg-white hover:bg-slate-100 text-slate-900 font-extrabold text-sm flex items-center justify-center gap-2 shadow">
+            <i class="fa-brands fa-google text-rose-500 text-base"></i> الدخول بحساب Google
+          </button>` : ''}`;
+      } else if (tab === 'register') {
+        body.innerHTML = `
+          <form onsubmit="handleClientRegister(event)" class="space-y-3">
+            <div><label class="text-xs font-bold block mb-1">الاسم الكامل</label><input type="text" id="reg-name" required placeholder="الاسم..." class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm"></div>
+            <div><label class="text-xs font-bold block mb-1">رقم الهاتف</label><input type="tel" id="reg-phone" required placeholder="01xxxxxxxxx" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm" dir="ltr"></div>
+            <div><label class="text-xs font-bold block mb-1">البريد الإلكتروني</label><input type="email" id="reg-email" required placeholder="name@example.com" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm" dir="ltr"></div>
+            <div><label class="text-xs font-bold block mb-1">كلمة المرور</label><input type="password" id="reg-pass" required minlength="4" placeholder="••••••••" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm" dir="ltr"></div>
+            <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm">إنشاء حساب جديد</button>
+          </form>`;
+      } else {
+        body.innerHTML = `
+          <form onsubmit="handleAdminLogin(event)" class="space-y-3">
+            <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-300">
+              <i class="fa-solid fa-lock ml-1"></i> منطقة خاصة بإدارة الموقع فقط
+            </div>
+            <div><label class="text-xs font-bold block mb-1">رقم هاتف الأدمن</label><input type="tel" id="adm-phone" required placeholder="01xxxxxxxxx" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm" dir="ltr"></div>
+            <div><label class="text-xs font-bold block mb-1">كلمة المرور</label><input type="password" id="adm-pass" required placeholder="••••••" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm" dir="ltr"></div>
+            <button type="submit" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm">دخول لوحة الإدارة</button>
+          </form>`;
+      }
+    }
+
+    async function handleClientRegister(e) {
+      e.preventDefault();
+      const name = document.getElementById('reg-name').value.trim();
+      const phone = document.getElementById('reg-phone').value.trim();
+      const email = document.getElementById('reg-email').value.trim().toLowerCase();
+      const pass = document.getElementById('reg-pass').value;
+      if (state.users.some(u => u.phone === phone || u.email === email)) {
+        return showToast('رقم الهاتف أو البريد مسجل بالفعل!', 'error');
+      }
+      const u = {
+        id: Date.now(), uid: 'u_' + Date.now(), name, phone, email,
+        passHash: await secureHash(pass), photoURL: '',
+        role: 'client', resellerDiscount: 0,
+        balance: 0, spent: 0, ordersCount: 0, status: 'نشط',
+        apiKey: 'smm_live_' + Math.random().toString(36).slice(2, 14),
+        refCode: 'U' + Math.floor(1000 + Math.random() * 9000), referralEarnings: 0, referredCount: 0
+      };
+      state.users.unshift(u);
+      state.activeUserId = u.id;
+      state.authSession = { loggedIn: true, provider: 'local', uid: u.uid, name: u.name, email: u.email, photoURL: '' };
+      saveState(); closeAuthModal();
+      showToast(`أهلاً بك يا ${u.name}! تم إنشاء حسابك بنجاح`, 'success');
+      enterClientPanel();
+    }
+
+    async function handleClientLogin(e) {
+      e.preventDefault();
+      const ident = document.getElementById('login-ident').value.trim().toLowerCase();
+      const passHash = await secureHash(document.getElementById('login-pass').value);
+      const u = state.users.find(x => (x.phone === ident || (x.email || '').toLowerCase() === ident) && x.passHash === passHash);
+      if (!u) return showToast('بيانات الدخول غير صحيحة!', 'error');
+      if (u.status === 'محظور') return showToast('هذا الحساب محظور، تواصل مع الإدارة', 'error');
+      state.activeUserId = u.id;
+      state.authSession = { loggedIn: true, provider: 'local', uid: u.uid, name: u.name, email: u.email, photoURL: u.photoURL || '' };
+      saveState(); closeAuthModal();
+      showToast(`مرحباً بعودتك يا ${u.name}`, 'success');
+      enterClientPanel();
+    }
+
+    async function handleAdminLogin(e) {
+      e.preventDefault();
+      await ensureAdminCredsInitialized();
+      const pHash = await secureHash(document.getElementById('adm-phone').value.trim());
+      const pwHash = await secureHash(document.getElementById('adm-pass').value);
+      if (pHash === state.adminAuth.phoneHash && pwHash === state.adminAuth.passHash) {
+        state.adminSession = true;
+        saveState(); closeAuthModal();
+        showToast('تم تسجيل دخول الأدمن بنجاح', 'success');
+        enterAdminPanel();
+      } else {
+        showToast('رقم الهاتف أو كلمة مرور الإدارة غير صحيحة!', 'error');
+      }
+    }
+
+    async function clientLogout() {
+      if (fbAuth && fbMods) try { await fbMods.signOut(fbAuth); } catch {}
+      state.activeUserId = null;
+      state.authSession = { loggedIn: false, provider: '', uid: null, name: '', email: '', photoURL: '' };
+      saveState();
+      showToast('تم تسجيل الخروج', 'info');
+      goHome();
+    }
+
+    function adminLogout() {
+      state.adminSession = false;
+      saveState();
+      showToast('تم تسجيل خروج الإدارة', 'info');
+      goHome();
+    }
+
+    // ===================== 5. Firebase و Google Sign-In =====================
+    function isValidFirebaseConfig(cfg) { return cfg && cfg.apiKey && !cfg.apiKey.includes('YOUR_') && cfg.projectId && !cfg.projectId.includes('YOUR_'); }
+
+    async function initFirebaseIfEnabled() {
+      if (!state.settings.firebaseEnabled) { fbStatus = 'disabled'; updateGlobalUI(); return false; }
+      const cfg = state.settings.firebaseConfig;
+      if (!isValidFirebaseConfig(cfg)) { fbStatus = 'placeholder'; updateGlobalUI(); return false; }
+      try {
+        if (!fbMods) {
+          const [appMod, authMod, fsMod] = await Promise.all([
+            import('https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js'),
+            import('https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js'),
+            import('https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js')
+          ]);
+          fbMods = { ...appMod, ...authMod, ...fsMod };
+        }
+        const existing = fbMods.getApps ? fbMods.getApps() : [];
+        fbApp = existing.length ? existing[0] : fbMods.initializeApp(cfg);
+        fbAuth = fbMods.getAuth(fbApp);
+        fbDb = fbMods.getFirestore(fbApp);
+        fbStatus = 'connected';
+        fbMods.onAuthStateChanged(fbAuth, async (user) => {
+          if (user && !state.adminSession) {
+            await handleGoogleSignedIn({ uid: user.uid, name: user.displayName || 'مستخدم جوجل', email: user.email || '', photoURL: user.photoURL || '' });
+          }
+        });
+        updateGlobalUI();
+        return true;
+      } catch (err) {
+        fbStatus = 'error'; updateGlobalUI();
+        showToast('تعذر الاتصال بـ Firebase: تأكد من المفاتيح', 'error');
+        return false;
+      }
+    }
+
+    async function handleGoogleSignedIn(profile) {
+      let u = state.users.find(x => x.uid === profile.uid || (profile.email && x.email === profile.email));
+      if (!u) {
+        u = {
+          id: Date.now(), uid: profile.uid, name: profile.name, phone: '', email: profile.email, photoURL: profile.photoURL,
+          role: 'client', resellerDiscount: 0, balance: 0, spent: 0, ordersCount: 0, status: 'نشط',
+          apiKey: 'smm_live_' + Math.random().toString(36).slice(2, 14), refCode: 'G' + Math.floor(1000 + Math.random() * 9000), referralEarnings: 0, referredCount: 0
+        };
+        state.users.unshift(u);
+      } else { u.uid = profile.uid; u.name = profile.name || u.name; u.photoURL = profile.photoURL || u.photoURL; }
+
+      if (fbDb && fbMods && state.settings.firestoreSync) {
+        try {
+          const ref = fbMods.doc(fbDb, 'smm_users', profile.uid);
+          const snap = await fbMods.getDoc(ref);
+          if (snap.exists()) {
+            const d = snap.data();
+            if (typeof d.balance === 'number') u.balance = d.balance;
+            if (typeof d.spent === 'number') u.spent = d.spent;
+            if (d.role) u.role = d.role;
+            if (typeof d.resellerDiscount === 'number') u.resellerDiscount = d.resellerDiscount;
+          } else {
+            await fbMods.setDoc(ref, { uid: profile.uid, name: u.name, email: u.email, role: u.role, resellerDiscount: u.resellerDiscount, balance: u.balance, spent: u.spent, updatedAt: new Date().toISOString() });
+          }
+        } catch {}
+      }
+      state.activeUserId = u.id;
+      state.authSession = { loggedIn: true, provider: 'google', ...profile };
+      saveState();
+    }
+
+    async function syncActiveUserToFirestore() {
+      if (!fbDb || !fbMods || !state.settings.firestoreSync || !state.authSession?.loggedIn) return;
+      const u = getActiveUser();
+      if (!u?.uid) return;
+      try {
+        await fbMods.setDoc(fbMods.doc(fbDb, 'smm_users', u.uid), { uid: u.uid, name: u.name, email: u.email, role: u.role, resellerDiscount: u.resellerDiscount || 0, balance: u.balance, spent: u.spent || 0, ordersCount: u.ordersCount || 0, updatedAt: new Date().toISOString() }, { merge: true });
+      } catch {}
+    }
+
+    async function syncOrderToFirestore(order) {
+      if (!fbDb || !fbMods || !state.settings.firestoreSync) return;
+      try { await fbMods.setDoc(fbMods.doc(fbDb, 'smm_orders', String(order.id)), order); } catch {}
+    }
+
+    async function signInWithGoogleReal() {
+      if (location.protocol === 'file:') return showToast('دخول جوجل يتطلب GitHub Pages أو localhost (وليس file://)', 'error');
+      if (!state.settings.firebaseEnabled || !isValidFirebaseConfig(state.settings.firebaseConfig)) return showToast('أدخل مفاتيح Firebase أولاً من لوحة الأدمن', 'info');
+      const ok = await initFirebaseIfEnabled();
+      if (!ok || !fbAuth || !fbMods) return;
+      try {
+        const result = await fbMods.signInWithPopup(fbAuth, new fbMods.GoogleAuthProvider());
+        await handleGoogleSignedIn({ uid: result.user.uid, name: result.user.displayName || 'مستخدم جوجل', email: result.user.email || '', photoURL: result.user.photoURL || '' });
+        closeAuthModal();
+        showToast(`أهلاً بك يا ${result.user.displayName}!`, 'success');
+        enterClientPanel();
+      } catch (err) { showToast('فشل دخول جوجل: ' + (err.code || err.message), 'error'); }
+    }
+
+    // ===================== 6. التنقل والواجهات =====================
+    function goHome() {
+      currentView = 'landing';
+      document.getElementById('view-landing').classList.remove('hidden');
+      document.getElementById('view-dashboard').classList.add('hidden');
+      renderLandingPreview();
+      updateGlobalUI();
+    }
+
+    function enterClientPanel(tab = 'new-order') {
+      if (!getActiveUser() || !state.authSession.loggedIn) return openAuthModal('login');
+      currentView = 'client';
+      currentTab = tab;
+      document.getElementById('view-landing').classList.add('hidden');
+      document.getElementById('view-dashboard').classList.remove('hidden');
+      const u = getActiveUser();
+      document.getElementById('panel-role-badge').textContent = u.role === 'reseller' ? 'لوحة الموزع المعتمد' : 'لوحة تحكم العميل';
+      document.getElementById('panel-role-badge').className = u.role === 'reseller' ? 'text-[11px] text-emerald-400 font-semibold' : 'text-[11px] text-indigo-400 font-semibold';
+      document.getElementById('client-balance-card').classList.remove('hidden');
+      updateGlobalUI(); renderSidebar(); renderCurrentView();
+    }
+
+    function enterAdminPanel(tab = 'admin-dashboard') {
+      if (!state.adminSession) return openAuthModal('admin');
+      currentView = 'admin';
+      currentTab = tab;
+      document.getElementById('view-landing').classList.add('hidden');
+      document.getElementById('view-dashboard').classList.remove('hidden');
+      document.getElementById('panel-role-badge').textContent = 'إدارة النظام (Admin)';
+      document.getElementById('panel-role-badge').className = 'text-[11px] text-amber-400 font-semibold';
+      document.getElementById('client-balance-card').classList.add('hidden');
+      updateGlobalUI(); renderSidebar(); renderCurrentView();
+    }
+
+    function navigateTab(tab) {
+      if (tab.startsWith('admin-') && !state.adminSession) return openAuthModal('admin');
+      if (!tab.startsWith('admin-') && (!getActiveUser() || !state.authSession.loggedIn)) return openAuthModal('login');
+      currentTab = tab; renderSidebar(); renderCurrentView();
+    }
+
+    function renderSidebar() {
+      const clientMenu = [
+        { id: 'new-order', label: 'طلب جديد', icon: 'fa-cart-plus' },
+        { id: 'mass-order', label: 'طلب جماعي (Mass)', icon: 'fa-layer-group' },
+        { id: 'services', label: 'قائمة الخدمات', icon: 'fa-list-check' },
+        { id: 'orders', label: 'سجل الطلبات', icon: 'fa-clock-rotate-left' },
+        { id: 'add-funds', label: 'شحن الرصيد', icon: 'fa-credit-card' },
+        ...(state.settings.affiliateEnabled ? [{ id: 'affiliate', label: 'التسويق بالعمولة', icon: 'fa-users-rays' }] : []),
+        { id: 'tickets', label: 'الدعم الفني', icon: 'fa-headset' },
+        { id: 'api', label: 'ربط الـ API', icon: 'fa-code' }
+      ];
+      const pendingDep = state.deposits.filter(d => d.status === 'قيد المراجعة').length;
+      const adminMenu = [
+        { id: 'admin-dashboard', label: 'لوحة الإحصائيات', icon: 'fa-chart-pie' },
+        { id: 'admin-orders', label: 'إدارة الطلبات', icon: 'fa-boxes-packing' },
+        { id: 'admin-services', label: 'إدارة الخدمات', icon: 'fa-sliders' },
+        { id: 'admin-users', label: 'الأعضاء والموزعين والشحن', icon: 'fa-users-gear', badge: pendingDep ? `${pendingDep}` : '' },
+        { id: 'admin-tickets', label: 'تذاكر الدعم', icon: 'fa-headset' },
+        { id: 'admin-providers', label: 'مزودو الخدمة API', icon: 'fa-server' },
+        { id: 'admin-patch', label: `مكتبة الباتشات (${PATCH_PRESETS.length})`, icon: 'fa-puzzle-piece' },
+        { id: 'admin-settings', label: 'الإعدادات والأمان', icon: 'fa-gear' }
+      ];
+      const items = currentView === 'client' ? clientMenu : adminMenu;
+      document.getElementById('sidebar-nav').innerHTML = items.map(item => {
+        const isActive = currentTab === item.id;
+        const activeStyle = currentView === 'admin' ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30' : 'theme-btn text-white shadow-md';
+        return `<button onclick="navigateTab('${item.id}')" class="w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-semibold transition ${isActive ? activeStyle : 'text-slate-300 hover:bg-slate-800/80'}"><span class="flex items-center gap-3"><i class="fa-solid ${item.icon} w-5 text-center"></i> ${item.label}</span>${item.badge ? `<span class="text-[10px] px-1.5 py-0.5 rounded-full bg-rose-500 text-white">${item.badge}</span>` : ''}</button>`;
+      }).join('');
+    }
+
+    function renderCurrentView() {
+      const c = document.getElementById('tab-content');
+      const views = {
+        'new-order': () => renderNewOrder(c), 'mass-order': () => renderMassOrder(c), 'services': () => renderServicesList(c),
+        'orders': () => renderClientOrders(c), 'add-funds': () => renderAddFunds(c), 'affiliate': () => renderAffiliate(c),
+        'tickets': () => renderTickets(c), 'api': () => renderApiDocs(c),
+        'admin-dashboard': () => renderAdminDashboard(c), 'admin-orders': () => renderAdminOrders(c),
+        'admin-services': () => renderAdminServices(c), 'admin-users': () => renderAdminUsers(c),
+        'admin-tickets': () => renderAdminTickets(c), 'admin-providers': () => renderAdminProviders(c),
+        'admin-patch': () => renderAdminPatch(c), 'admin-settings': () => renderAdminSettings(c)
+      };
+      if (views[currentTab]) views[currentTab]();
+    }
+
+    // ===================== 7. محرك الـ API والجلب على دفعات (بالأقساط) =====================
+    async function callProviderProxy(provider, payload) {
+      if (!provider?.proxyUrl) throw new Error('يرجى إضافة رابط Cloudflare Worker للمزود أولاً');
+      const headers = { 'Content-Type': 'application/json' };
+      if (state.settings.workerAdminSecret) headers['X-Admin-Secret'] = state.settings.workerAdminSecret;
+      const res = await fetch(provider.proxyUrl, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ apiUrl: provider.targetApiUrl, providerSlot: provider.slot || 1, ...payload })
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      return data;
+    }
+
+    function guessCategoryId(catName = '') {
+      const s = catName.toLowerCase();
+      if (s.includes('insta')) return 'ig';
+      if (s.includes('tiktok') || s.includes('tik tok')) return 'tt';
+      if (s.includes('youtube')) return 'yt';
+      if (s.includes('telegram')) return 'tg';
+      if (s.includes('facebook')) return 'fb';
+      if (s.includes('twitter') || s.includes('x ')) return 'x';
+      return state.categories[0]?.id || 'ig';
+    }
+
+    async function syncProviderBalance(providerId) {
+      const p = state.providers.find(x => x.id === providerId);
+      if (!p) return;
+      if (!p.proxyUrl) return showToast('أضف رابط Cloudflare Worker للمزود أولاً', 'info');
+      try {
+        showToast(`جاري فحص رصيد ${p.name}...`, 'info');
+        const data = await callProviderProxy(p, { action: 'balance' });
+        p.balance = `${parseFloat(data.balance || 0).toFixed(2)} ${data.currency || '$'}`;
+        p.status = 'متصل حقيقي';
+        saveState(); showToast(`الرصيد الحالي: ${p.balance}`, 'success'); renderCurrentView();
+      } catch (e) {
+        p.status = 'خطأ اتصال'; saveState(); showToast(`فشل جلب الرصيد: ${e.message}`, 'error'); renderCurrentView();
+      }
+    }
+
+    function openProviderSyncModal(providerId, nextOffset = 0) {
+      const p = state.providers.find(x => x.id === providerId);
+      if (!p) return;
+      openGenericModal(`<i class="fa-solid fa-layer-group ml-2"></i> جلب الخدمات على دفعات من ${esc(p.name)}`, `
+        <div class="space-y-4 text-sm">
+          <div class="p-3 rounded-xl bg-darkbg border border-borderdark text-xs text-slate-300">
+            ${p.proxyUrl ? `<span class="text-emerald-400">Worker متصل:</span> <span dir="ltr" class="font-mono">${esc(p.proxyUrl)}</span>` : '<span class="text-amber-400">تنبيه:</span> لم يتم وضع رابط Worker لهذا المزود بعد.'}
+          </div>
+          <div class="grid sm:grid-cols-3 gap-3">
+            <div><label class="text-xs font-bold block mb-1">نسبة ربحك (%)</label><input type="number" id="sync-markup" value="${p.markupPercent || 30}" min="0" max="500" class="w-full bg-darkbg border border-borderdark rounded-xl px-3 py-2 text-xs"></div>
+            <div><label class="text-xs font-bold block mb-1">البداية (Offset)</label><input type="number" id="sync-offset" value="${nextOffset}" min="0" class="w-full bg-darkbg border border-borderdark rounded-xl px-3 py-2 text-xs"></div>
+            <div><label class="text-xs font-bold block mb-1">حجم الدفعة (Limit)</label><input type="number" id="sync-limit" value="50" min="5" max="100" class="w-full bg-darkbg border border-borderdark rounded-xl px-3 py-2 text-xs"></div>
+          </div>
+          <div><label class="text-xs font-bold block mb-1">فلتر كلمة مفتاحية (مثال: Instagram أو TikTok)</label><input type="text" id="sync-kw" placeholder="اتركه فارغاً لجلب الكل بالدفعات" class="w-full bg-darkbg border border-borderdark rounded-xl px-3 py-2 text-xs" dir="ltr"></div>
+          <div id="batch-sync-status" class="text-xs text-indigo-300"></div>
+          <div class="flex gap-2">
+            <button onclick="executeProviderServicesSync(${p.id})" class="flex-1 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs">سحب الدفعة الآن</button>
+          </div>
+        </div>
+      `);
+    }
+
+    async function executeProviderServicesSync(providerId) {
+      const p = state.providers.find(x => x.id === providerId);
+      if (!p || !p.proxyUrl) return showToast('أضف رابط Cloudflare Worker للمزود أولاً', 'error');
+      const markup = parseFloat(document.getElementById('sync-markup').value) || 0;
+      const offset = parseInt(document.getElementById('sync-offset').value) || 0;
+      const limit = Math.min(100, parseInt(document.getElementById('sync-limit').value) || 50);
+      const kw = (document.getElementById('sync-kw').value || '').trim();
+      p.markupPercent = markup;
+
+      try {
+        showToast(`جاري سحب الدفعة (${offset} إلى ${offset + limit})...`, 'info');
+        const res = await callProviderProxy(p, { action: 'services', offset, limit, keyword: kw });
+        const list = Array.isArray(res) ? res.slice(offset, offset + limit) : (res.items || []);
+        const total = Array.isArray(res) ? res.length : (res.total || list.length);
+
+        let added = 0;
+        list.forEach(item => {
+          const baseRate = parseFloat(item.rate) || 1;
+          const finalRate = parseFloat((baseRate * (1 + markup / 100)).toFixed(3));
+          const localId = Number(item.service) + (providerId * 10000);
+          const svcObj = {
+            id: localId, catId: guessCategoryId(item.category),
+            name: `${item.name} [API]`, rate: finalRate,
+            min: parseInt(item.min) || 100, max: parseInt(item.max) || 50000,
+            desc: `مستورد من ${p.name} (${item.category || ''}) • التكلفة $${baseRate}`,
+            active: true, providerId: p.id, externalServiceId: item.service
+          };
+          const idx = state.services.findIndex(s => s.id === localId);
+          if (idx >= 0) state.services[idx] = svcObj; else state.services.unshift(svcObj);
+          added++;
+        });
+
+        p.status = 'متصل حقيقي';
+        saveState();
+        const nextOff = offset + added;
+        document.getElementById('sync-offset').value = nextOff;
+        document.getElementById('batch-sync-status').innerHTML = `✅ تم استيراد <strong>${added}</strong> خدمة (إجمالي المتاح: ${total}). ${nextOff < total ? `اضغط "سحب الدفعة الآن" لسحب الدفعة التالية (${nextOff})!` : 'تم جلب كل الخدمات!'}`;
+        showToast(`تم استيراد ${added} خدمة بنجاح!`, 'success');
+      } catch (e) { showToast(`فشل جلب الدفعة: ${e.message}`, 'error'); }
+    }
+
+    async function dispatchOrderToProvider(orderId) {
+      const o = state.orders.find(x => x.id === orderId);
+      const svc = state.services.find(s => s.id === o?.serviceId);
+      const p = state.providers.find(x => x.id === (svc?.providerId || o?.providerId));
+      if (!o || !p?.proxyUrl || !svc?.externalServiceId) return showToast('الخدمة غير مربوطة بـ Worker حقيقي', 'info');
+      try {
+        const res = await callProviderProxy(p, { action: 'add', service: svc.externalServiceId, link: o.link, quantity: o.qty });
+        if (res.order) {
+          o.externalOrderId = res.order; o.providerId = p.id; o.status = 'قيد التنفيذ';
+          saveState(); syncOrderToFirestore(o);
+          showToast(`تم إرسال الطلب للمزود برقم #${res.order}`, 'success');
+          if (currentView === 'admin') renderCurrentView();
+        } else throw new Error('لم يرجع رقم طلب');
+      } catch (e) { showToast(`خطأ بالإرسال: ${e.message}`, 'error'); }
+    }
+
+    async function syncOrderStatusFromProvider(orderId) {
+      const o = state.orders.find(x => x.id === orderId);
+      const p = state.providers.find(x => x.id === o?.providerId);
+      if (!o?.externalOrderId || !p?.proxyUrl) return showToast('الطلب لم يرسل عبر API', 'info');
+      try {
+        const res = await callProviderProxy(p, { action: 'status', order: o.externalOrderId });
+        const stMap = { Completed: 'مكتمل', 'In progress': 'قيد التنفيذ', Processing: 'قيد التنفيذ', Pending: 'قيد الانتظار', Canceled: 'ملغي' };
+        if (res.status && stMap[res.status]) o.status = stMap[res.status];
+        saveState(); syncOrderToFirestore(o);
+        showToast(`حالة المزود: ${res.status || '—'}`, 'success');
+        renderCurrentView();
+      } catch (e) { showToast(`خطأ: ${e.message}`, 'error'); }
+    }
+
+    function showWorkerCodeModal() {
+      openGenericModal('<i class="fa-solid fa-shield-halved ml-2"></i> كود Cloudflare Worker المحصّن (بالأمان والدفعات)', `
+        <p class="text-xs text-slate-300 leading-relaxed">
+          ارفع هذا الكود في <strong>Cloudflare Workers</strong>، ثم من <strong>Settings ⬅ Variables and Secrets</strong> أضف:<br>
+          • <code class="text-emerald-400">KEY_1</code>: مفتاح الـ API للمزود الأول (و <code class="text-emerald-400">KEY_2</code> للثاني)<br>
+          • <code class="text-amber-300">ALLOWED_ORIGIN</code>: رابط موقعك على GitHub (مثال: <code>https://user.github.io</code>)<br>
+          • <code class="text-sky-300">ADMIN_SECRET</code>: كلمة سر قوية تطابق ما تضعه في إعدادات الأدمن هنا
+        </p>
+        <textarea readonly rows="14" dir="ltr" class="w-full bg-black/80 border border-borderdark rounded-xl p-3 font-mono text-[11px] text-emerald-400">${esc(WORKER_CODE_LINES)}</textarea>
+        <button onclick="navigator.clipboard.writeText(WORKER_CODE_LINES); showToast('تم نسخ الكود المحصن!','success')" class="w-full py-2.5 rounded-xl theme-btn text-white font-bold text-xs"><i class="fa-solid fa-copy ml-1"></i> نسخ الكود</button>
+      `);
+    }
+
+    // ===================== 8. صفحات العميل / الموزع =====================
+    function renderNewOrder(container, preselectedId = null, prefillLink = '') {
+      const activeServices = state.services.filter(s => s.active);
+      let defaultCat = state.categories[0]?.id || 'ig';
+      if (preselectedId) { const f = activeServices.find(s => s.id == preselectedId); if (f) defaultCat = f.catId; }
+      const u = getActiveUser();
+      const disc = getEffectiveDiscountInfo(u);
+
+      container.innerHTML = `
+        <div class="mb-6 flex flex-wrap justify-between items-center gap-3">
+          <div>
+            <h2 class="text-2xl font-extrabold">إنشاء طلب جديد</h2>
+            <p class="text-slate-400 text-sm">العملة: <strong class="text-indigo-400">${state.settings.activeCurrency === 'EGP' ? 'الجنيه المصري' : 'الدولار'}</strong> • ${u.role === 'reseller' ? `<strong class="text-emerald-400">خصم الموزع: -${disc.resellerPct}%</strong>` : `<strong class="text-amber-400">${disc.vipName}</strong>`}</p>
+          </div>
+          ${state.settings.couponsEnabled ? `<div class="text-xs bg-indigo-500/10 border border-indigo-500/30 px-3 py-1.5 rounded-xl text-indigo-300">أكواد الخصم: <strong>WELCOME10</strong> • <strong>VIP15</strong></div>` : ''}
+        </div>
+        <div class="grid lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2 glass rounded-2xl p-6">
+            <form onsubmit="submitNewOrder(event)" class="space-y-5">
+              <div>
+                <label class="block text-sm font-bold mb-2">1. اختر المنصة</label>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  ${state.categories.map(cat => `<button type="button" onclick="selectCategory('${cat.id}')" data-cat="${cat.id}" class="cat-pill flex items-center gap-2 p-2.5 rounded-xl border text-xs font-bold transition ${cat.id === defaultCat ? 'bg-indigo-600/20 border-indigo-500 text-white' : 'bg-darkbg border-borderdark text-slate-400'}"><i class="${cat.icon} text-base"></i><span class="truncate">${esc(cat.name.split('|')[0])}</span></button>`).join('')}
+                </div>
+                <input type="hidden" id="order-cat" value="${defaultCat}" />
+              </div>
+              <div><label class="block text-sm font-bold mb-2">2. الخدمة</label><select id="order-service" onchange="onServiceChange()" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-3 text-sm"></select></div>
+              <div><label class="block text-sm font-bold mb-2">3. الرابط (Link)</label><input type="url" id="order-link" value="${esc(prefillLink)}" required placeholder="https://instagram.com/username" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-3 text-sm" dir="ltr" /></div>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-bold mb-2">4. الكمية</label>
+                  <input type="number" id="order-qty" oninput="calculateOrderPrice()" required placeholder="1000" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-3 text-sm" />
+                  <div class="text-xs text-slate-400 mt-1">الأدنى: <span id="svc-min" class="text-indigo-400 font-bold">0</span> | الأقصى: <span id="svc-max" class="text-indigo-400 font-bold">0</span></div>
+                </div>
+                ${state.settings.couponsEnabled ? `<div><label class="block text-sm font-bold mb-2">كود الخصم</label><input type="text" id="order-coupon" oninput="calculateOrderPrice()" placeholder="WELCOME10" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-3 text-sm uppercase" dir="ltr" /><div id="coupon-feedback" class="text-xs mt-1 text-slate-400"></div></div>` : ''}
+              </div>
+              ${state.settings.dripFeedEnabled ? `<div class="p-4 rounded-xl bg-darkbg/70 border border-borderdark"><label class="flex items-center gap-2 text-sm font-bold cursor-pointer"><input type="checkbox" id="drip-toggle" onchange="toggleDripFeed()" class="w-4 h-4 accent-indigo-500"><span>التنفيذ بالتدريج (Drip-Feed)</span></label><div id="drip-fields" class="hidden grid sm:grid-cols-2 gap-3 mt-3"><div><label class="text-xs text-slate-400 block mb-1">الدفعات</label><input type="number" id="drip-runs" value="2" min="2" max="100" oninput="calculateOrderPrice()" class="w-full bg-cardbg border border-borderdark rounded-lg px-3 py-2 text-xs"></div><div><label class="text-xs text-slate-400 block mb-1">الفاصل (دقائق)</label><input type="number" id="drip-interval" value="60" min="5" class="w-full bg-cardbg border border-borderdark rounded-lg px-3 py-2 text-xs"></div></div></div>` : ''}
+              <div class="bg-indigo-950/40 border border-indigo-500/30 rounded-xl p-4 flex flex-wrap items-center justify-between gap-2">
+                <div><div class="text-xs text-slate-400">التكلفة النهائية</div><div id="price-breakdown" class="text-[11px] text-emerald-400"></div></div>
+                <div class="text-2xl font-extrabold text-indigo-300"><span id="order-total-price">0.00</span> <span class="text-sm">${getCurrSymbol()}</span></div>
+              </div>
+              <button type="submit" class="w-full py-3.5 rounded-xl theme-btn text-white font-bold shadow-lg transition hover:opacity-90"><i class="fa-solid fa-paper-plane ml-2"></i> تأكيد وإرسال الطلب</button>
+            </form>
+          </div>
+          <div class="glass rounded-2xl p-5 h-fit space-y-3 text-sm">
+            <h3 class="font-bold text-base text-indigo-400"><i class="fa-solid fa-circle-info ml-1"></i> تفاصيل الخدمة</h3>
+            <div class="flex justify-between py-2 border-b border-borderdark"><span class="text-slate-400">الرقم:</span><span id="svc-id" class="font-bold">#0</span></div>
+            <div class="flex justify-between py-2 border-b border-borderdark"><span class="text-slate-400">السعر / 1000:</span><span id="svc-rate" class="font-bold text-emerald-400">0</span></div>
+            <div class="bg-darkbg p-3.5 rounded-xl border border-borderdark text-xs text-slate-300" id="svc-desc"></div>
+          </div>
+        </div>`;
+      populateServicesDropdown(defaultCat, preselectedId);
+    }
+
+    function toggleDripFeed() { document.getElementById('drip-fields').classList.toggle('hidden', !document.getElementById('drip-toggle').checked); calculateOrderPrice(); }
+    function selectCategory(catId) {
+      document.getElementById('order-cat').value = catId;
+      document.querySelectorAll('.cat-pill').forEach(b => { b.className = `cat-pill flex items-center gap-2 p-2.5 rounded-xl border text-xs font-bold transition ${b.dataset.cat === catId ? 'bg-indigo-600/20 border-indigo-500 text-white' : 'bg-darkbg border-borderdark text-slate-400'}`; });
+      populateServicesDropdown(catId);
+    }
+    function populateServicesDropdown(catId, preId = null) {
+      const select = document.getElementById('order-service'), list = state.services.filter(s => s.catId === catId && s.active);
+      const disc = getEffectiveDiscountInfo(getActiveUser());
+      select.innerHTML = list.length ? list.map(s => {
+        const effRate = s.rate * (1 - disc.resellerPct / 100);
+        return `<option value="${s.id}" ${preId == s.id ? 'selected' : ''}>#${s.id} - ${esc(s.name)} (${formatMoney(effRate, 2)} / 1K)</option>`;
+      }).join('') : '<option value="">لا توجد خدمات متاحة</option>';
+      onServiceChange();
+    }
+    function onServiceChange() {
+      const svc = state.services.find(s => s.id == document.getElementById('order-service').value);
+      if (!svc) return;
+      const disc = getEffectiveDiscountInfo(getActiveUser());
+      document.getElementById('svc-id').textContent = '#' + svc.id;
+      document.getElementById('svc-rate').textContent = formatMoney(svc.rate * (1 - disc.resellerPct / 100), 2);
+      document.getElementById('svc-min').textContent = svc.min.toLocaleString();
+      document.getElementById('svc-max').textContent = svc.max.toLocaleString();
+      document.getElementById('svc-desc').textContent = svc.desc;
+      calculateOrderPrice();
+    }
+
+    function getOrderPricingDetails() {
+      const svc = state.services.find(s => s.id == document.getElementById('order-service')?.value);
+      const qty = parseInt(document.getElementById('order-qty')?.value) || 0;
+      const isDrip = document.getElementById('drip-toggle')?.checked || false;
+      const runs = isDrip ? (parseInt(document.getElementById('drip-runs')?.value) || 2) : 1;
+      const totalQty = qty * runs;
+      if (!svc) return { totalQty: 0, finalUSD: 0, vipPct: 0, resellerPct: 0, couponDisc: 0, couponMsg: '' };
+      const baseUSD = (totalQty / 1000) * svc.rate;
+      const disc = getEffectiveDiscountInfo(getActiveUser());
+      let couponDisc = 0, couponMsg = '';
+      const codeInput = (document.getElementById('order-coupon')?.value || '').trim().toUpperCase();
+      if (codeInput && state.settings.couponsEnabled) {
+        const c = state.coupons.find(x => x.code.toUpperCase() === codeInput && x.active);
+        if (c && baseUSD >= (c.minUSD || 0)) { couponDisc = c.discount; couponMsg = `<span class="text-emerald-400">تم تطبيق خصم ${c.discount}%!</span>`; }
+        else if (c) couponMsg = `<span class="text-amber-400">الحد الأدنى ${formatMoney(c.minUSD, 2)}</span>`;
+        else couponMsg = `<span class="text-rose-400">كود غير صالح</span>`;
+      }
+      const afterReseller = baseUSD * (1 - disc.resellerPct / 100);
+      const afterVip = afterReseller * (1 - disc.vipPct / 100);
+      const finalUSD = parseFloat((afterVip * (1 - couponDisc / 100)).toFixed(4));
+      return { svc, qty, isDrip, runs, totalQty, baseUSD, finalUSD, vipPct: disc.vipPct, resellerPct: disc.resellerPct, couponDisc, couponMsg };
+    }
+
+    function calculateOrderPrice() {
+      const p = getOrderPricingDetails();
+      const fb = document.getElementById('coupon-feedback'); if (fb) fb.innerHTML = p.couponMsg;
+      document.getElementById('order-total-price').textContent = convertAmount(p.finalUSD).toFixed(state.settings.activeCurrency === 'EGP' ? 2 : 3);
+      const notes = [];
+      if (p.isDrip) notes.push(`الكمية: ${p.totalQty.toLocaleString()} (${p.runs} دفعات)`);
+      if (p.resellerPct) notes.push(`خصم الموزع -${p.resellerPct}%`);
+      if (p.vipPct) notes.push(`VIP -${p.vipPct}%`);
+      if (p.couponDisc) notes.push(`كوبون -${p.couponDisc}%`);
+      document.getElementById('price-breakdown').textContent = notes.join(' • ');
+    }
+
+    async function submitNewOrder(e) {
+      e.preventDefault();
+      if (state.settings.maintenanceMode) return showToast("الموقع في وضع الصيانة حالياً", "error");
+      const p = getOrderPricingDetails(), link = document.getElementById('order-link').value.trim();
+      if (!p.svc || p.qty < p.svc.min || p.qty > p.svc.max) return showToast(`الكمية يجب أن تكون بين ${p.svc?.min || 0} و ${p.svc?.max || 0}`, "error");
+      const u = getActiveUser();
+      if (u.balance < p.finalUSD) return showToast("رصيدك غير كافٍ! اشحن الرصيد أولاً.", "error");
+
+      u.balance = parseFloat((u.balance - p.finalUSD).toFixed(4));
+      u.spent = parseFloat(((u.spent || 0) + p.finalUSD).toFixed(4));
+      u.ordersCount = (u.ordersCount || 0) + 1;
+
+      const order = {
+        id: Math.floor(5050 + Math.random() * 4000), userId: u.id, userName: u.name,
+        serviceId: p.svc.id, serviceName: p.svc.name + (p.isDrip ? ` [Drip ${p.runs}x]` : ''),
+        link, qty: p.totalQty, charge: p.finalUSD, status: "قيد الانتظار",
+        date: new Date().toISOString().slice(0, 16).replace('T', ' '), refillRequested: false,
+        providerId: p.svc.providerId || null, externalOrderId: null
+      };
+      state.orders.unshift(order); saveState(); syncOrderToFirestore(order);
+      showToast(`تم إنشاء الطلب #${order.id} بنجاح!`, "success");
+      if (state.settings.autoDispatchApi && order.providerId) await dispatchOrderToProvider(order.id);
+      navigateTab('orders');
+    }
+
+    function renderMassOrder(container) {
+      container.innerHTML = `<h2 class="text-2xl font-extrabold mb-4">الطلب الجماعي (Mass Order)</h2><div class="glass rounded-2xl p-6 max-w-3xl"><div class="bg-darkbg border border-borderdark rounded-xl p-3 mb-4 text-xs text-slate-300">الصيغة: <code dir="ltr" class="text-emerald-400">service_id | link | quantity</code></div><textarea id="mass-input" rows="6" dir="ltr" placeholder="101 | https://instagram.com/user1 | 1000&#10;202 | https://tiktok.com/@user2 | 5000" class="w-full bg-darkbg border border-borderdark rounded-xl p-4 text-sm font-mono mb-4"></textarea><button onclick="processMassOrder()" class="px-6 py-3 rounded-xl theme-btn text-white font-bold text-sm">تنفيذ الطلبات</button></div>`;
+    }
+
+    function processMassOrder() {
+      if (state.settings.maintenanceMode) return showToast("الموقع في وضع الصيانة", "error");
+      const lines = document.getElementById('mass-input').value.trim().split('\n').filter(Boolean);
+      const u = getActiveUser(), disc = getEffectiveDiscountInfo(u);
+      let count = 0;
+      for (let line of lines) {
+        const [sid, link, qtyStr] = line.split('|').map(x => x.trim());
+        const svc = state.services.find(s => s.id == sid && s.active), qty = parseInt(qtyStr);
+        if (!svc || !link || !qty || qty < svc.min || qty > svc.max) continue;
+        const chargeUSD = parseFloat((((qty / 1000) * svc.rate) * (1 - disc.resellerPct / 100) * (1 - disc.vipPct / 100)).toFixed(4));
+        if (u.balance < chargeUSD) { showToast("توقف لعدم كفاية الرصيد", "error"); break; }
+        u.balance = parseFloat((u.balance - chargeUSD).toFixed(4));
+        u.spent = parseFloat(((u.spent || 0) + chargeUSD).toFixed(4));
+        u.ordersCount = (u.ordersCount || 0) + 1;
+        const ord = { id: Math.floor(5050 + Math.random() * 4000), userId: u.id, userName: u.name, serviceId: svc.id, serviceName: svc.name, link, qty, charge: chargeUSD, status: "قيد الانتظار", date: new Date().toISOString().slice(0, 16).replace('T', ' '), refillRequested: false };
+        state.orders.unshift(ord); syncOrderToFirestore(ord); count++;
+      }
+      saveState();
+      count ? (showToast(`تم تنفيذ ${count} طلبات!`, "success"), navigateTab('orders')) : showToast("تحقق من صحة البيانات", "error");
+    }
+
+    function renderServicesList(container) {
+      container.innerHTML = `
+        <div class="flex flex-col sm:flex-row justify-between gap-4 mb-4">
+          <div><h2 class="text-2xl font-extrabold">قائمة الخدمات والأسعار</h2><p class="text-slate-400 text-sm">الأسعار لكل 1000 بعملة (${getCurrSymbol()})</p></div>
+          <input type="text" id="svc-search" oninput="filterServicesTable()" placeholder="بحث عن خدمة أو رقم..." class="bg-cardbg border border-borderdark rounded-xl px-4 py-2 text-sm sm:w-64">
+        </div>
+        <div class="flex flex-wrap gap-2 mb-5">
+          <button onclick="serviceCatFilter='all'; renderServicesList(document.getElementById('tab-content'))" class="px-3 py-1.5 rounded-xl text-xs font-bold border ${serviceCatFilter === 'all' ? 'theme-btn text-white border-transparent' : 'bg-cardbg border-borderdark text-slate-300'}">الكل (${state.services.filter(s=>s.active).length})</button>
+          ${state.categories.map(c => `<button onclick="serviceCatFilter='${c.id}'; renderServicesList(document.getElementById('tab-content'))" class="px-3 py-1.5 rounded-xl text-xs font-bold border flex items-center gap-1.5 ${serviceCatFilter === c.id ? 'theme-btn text-white border-transparent' : 'bg-cardbg border-borderdark text-slate-300'}"><i class="${c.icon}"></i>${esc(c.name.split('|')[0])}</button>`).join('')}
+        </div>
+        <div class="glass rounded-2xl overflow-x-auto"><table class="w-full text-sm text-right"><thead class="bg-slate-900/80 text-slate-400 text-xs border-b border-borderdark"><tr><th class="p-4">ID</th><th class="p-4">القسم</th><th class="p-4">الخدمة</th><th class="p-4">السعر / 1K</th><th class="p-4">الحدود</th><th class="p-4">طلب</th></tr></thead><tbody id="services-tbody" class="divide-y divide-borderdark"></tbody></table></div>`;
+      filterServicesTable();
+    }
+
+    function filterServicesTable() {
+      const q = (document.getElementById('svc-search')?.value || '').toLowerCase();
+      const disc = getEffectiveDiscountInfo(getActiveUser());
+      document.getElementById('services-tbody').innerHTML = state.services
+        .filter(s => s.active && (serviceCatFilter === 'all' || s.catId === serviceCatFilter) && (s.name.toLowerCase().includes(q) || String(s.id).includes(q)))
+        .map(s => {
+          const cat = state.categories.find(c => c.id === s.catId);
+          const finalRate = s.rate * (1 - disc.resellerPct / 100);
+          return `<tr class="hover:bg-slate-800/40"><td class="p-4 font-bold text-indigo-400">#${s.id}</td><td class="p-4 text-xs"><i class="${cat?.icon || ''} ml-1"></i>${esc(cat?.name.split('|')[0] || '')}</td><td class="p-4 font-semibold">${esc(s.name)} ${s.badge ? `<span class="mr-1 px-2 py-0.5 rounded-full text-[10px] bg-amber-500/20 text-amber-300">${esc(s.badge)}</span>` : ''}</td><td class="p-4 font-bold text-emerald-400">${formatMoney(finalRate, 2)}${disc.resellerPct ? `<span class="block text-[10px] text-slate-500 line-through">${formatMoney(s.rate, 2)}</span>` : ''}</td><td class="p-4 text-xs text-slate-400">${s.min.toLocaleString()} / ${s.max.toLocaleString()}</td><td class="p-4"><button onclick="orderSpecificService(${s.id})" class="px-3 py-1 rounded-lg theme-btn text-white text-xs font-bold">اطلب</button></td></tr>`;
+        }).join('');
+    }
+
+    function orderSpecificService(id, link = '') { currentTab = 'new-order'; renderSidebar(); renderNewOrder(document.getElementById('tab-content'), id, link); }
+    function statusBadge(st) {
+      const map = { 'مكتمل': 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30', 'معتمد': 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30', 'قيد التنفيذ': 'bg-sky-500/15 text-sky-400 border-sky-500/30', 'قيد الانتظار': 'bg-amber-500/15 text-amber-400 border-amber-500/30', 'قيد المراجعة': 'bg-amber-500/15 text-amber-400 border-amber-500/30', 'ملغي': 'bg-rose-500/15 text-rose-400 border-rose-500/30', 'مرفوض': 'bg-rose-500/15 text-rose-400 border-rose-500/30' };
+      return `<span class="px-2.5 py-0.5 rounded-full text-xs font-bold border ${map[st] || 'bg-slate-700'}">${esc(st)}</span>`;
+    }
+
+    function renderClientOrders(container) {
+      const myOrders = state.orders.filter(o => o.userId === getActiveUser().id);
+      container.innerHTML = `<h2 class="text-2xl font-extrabold mb-6">سجل الطلبات (${myOrders.length})</h2><div class="glass rounded-2xl overflow-x-auto"><table class="w-full text-sm text-right"><thead class="bg-slate-900/80 text-slate-400 text-xs border-b border-borderdark"><tr><th class="p-4">ID</th><th class="p-4">الخدمة</th><th class="p-4">الرابط</th><th class="p-4">الكمية</th><th class="p-4">التكلفة</th><th class="p-4">الحالة</th><th class="p-4">إجراءات</th></tr></thead><tbody class="divide-y divide-borderdark">${myOrders.length ? myOrders.map((o, idx) => `<tr class="hover:bg-slate-800/40"><td class="p-4 font-bold text-indigo-400">#${o.id}</td><td class="p-4 max-w-xs truncate font-semibold">${esc(o.serviceName)}</td><td class="p-4 max-w-[140px] truncate text-xs text-slate-400" dir="ltr">${esc(o.link)}</td><td class="p-4 font-bold">${o.qty.toLocaleString()}</td><td class="p-4 text-emerald-400 font-bold">${formatMoney(o.charge, 2)}</td><td class="p-4">${statusBadge(o.status)}</td><td class="p-4 flex gap-1.5"><button onclick="reorderByIndex(${idx})" class="px-2.5 py-1 rounded-lg bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 text-xs font-bold">إعادة</button>${o.status === 'مكتمل' ? `<button onclick="requestRefill(${o.id})" ${o.refillRequested ? 'disabled' : ''} class="px-2.5 py-1 rounded-lg text-xs font-bold ${o.refillRequested ? 'bg-slate-800 text-slate-500' : 'bg-emerald-600/20 text-emerald-300 border border-emerald-500/30'}">${o.refillRequested ? 'تم التعويض' : 'تعويض Refill'}</button>` : ''}</td></tr>`).join('') : '<tr><td colspan="7" class="p-8 text-center text-slate-400">لا توجد طلبات حتى الآن</td></tr>'}</tbody></table></div>`;
+    }
+    function reorderByIndex(idx) { const o = state.orders.filter(x => x.userId === getActiveUser().id)[idx]; if (o) orderSpecificService(o.serviceId, o.link); }
+    function requestRefill(id) { const o = state.orders.find(x => x.id === id); if (o) { o.refillRequested = true; saveState(); showToast(`تم إرسال طلب تعويض للطلب #${id}`, "success"); renderCurrentView(); } }
+
+    function renderAddFunds(container) {
+      const u = getActiveUser(), myDeps = state.deposits.filter(d => d.userId === u.id), isEGP = state.settings.activeCurrency === 'EGP';
+      container.innerHTML = `
+        <div class="mb-6"><h2 class="text-2xl font-extrabold">شحن الرصيد</h2><p class="text-slate-400 text-sm">سعر الصرف المعتمد: <strong class="text-emerald-400">1$ = ${state.settings.usdToEgpRate} ج.م</strong></p></div>
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div class="glass rounded-2xl p-6">
+            <form onsubmit="submitDepositRequest(event)" class="space-y-4">
+              <div><label class="block text-sm font-bold mb-2">وسيلة الدفع</label><select id="dep-method" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-3 text-sm"><option>إنستاباي مصر (InstaPay) - فوري</option><option>فودافون كاش / أورنج / اتصالات كاش</option><option>بطاقة بنكية / فوري (Paymob / Fawry)</option><option>تقسيط الباقات (valU / Tabby / Tamara)</option><option>عملات رقمية (USDT TRC20 / Binance Pay)</option></select></div>
+              <div><label class="block text-sm font-bold mb-2">المبلغ المحول (${getCurrSymbol()})</label><input type="number" id="pay-amount" oninput="updateFundPreview()" min="1" step="0.5" value="${isEGP ? 500 : 10}" required class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-3 text-sm" /><div class="text-xs text-slate-400 mt-1.5" id="fund-preview"></div></div>
+              <div><label class="block text-sm font-bold mb-2">رقم الهاتف المحول منه / رقم العملية</label><input type="text" id="dep-ref" required placeholder="مثال: 010xxxxxxxx أو رقم المرجع" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-3 text-sm" dir="ltr" /></div>
+              <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold">إرسال طلب الشحن للمراجعة</button>
+            </form>
+          </div>
+          <div class="glass rounded-2xl p-6 space-y-3 text-sm text-slate-300">
+            <h3 class="font-bold text-base text-indigo-400">تعليمات التحويل السريع</h3>
+            <p>• حوّل المبلغ عبر <strong>إنستاباي</strong> أو <strong>فودافون كاش</strong> على رقم الإدارة: <strong class="text-amber-300 font-mono" dir="ltr">${esc(state.settings.whatsappNumber || 'تواصل واتساب للتأكيد')}</strong></p>
+            <p>• بعد التحويل أدخل الرقم المحول منه، وسيتم مراجعة واعتماد الرصيد خلال دقائق.</p>
+            <p>• متاح تقسيط الباقات الكبيرة للموزعين عبر فاليو وتابي عند التعاقد.</p>
+          </div>
+        </div>
+        <div class="glass rounded-2xl overflow-x-auto">
+          <div class="p-4 border-b border-borderdark font-bold text-sm">سجل طلبات الشحن الخاصة بك</div>
+          <table class="w-full text-sm text-right"><thead class="bg-slate-900/80 text-slate-400 text-xs"><tr><th class="p-3">ID</th><th class="p-3">الوسيلة</th><th class="p-3">المبلغ</th><th class="p-3">المرجع</th><th class="p-3">الحالة</th></tr></thead><tbody class="divide-y divide-borderdark">${myDeps.length ? myDeps.map(d => `<tr><td class="p-3 font-bold">#${d.id}</td><td class="p-3 text-xs">${esc(d.method)}</td><td class="p-3 text-emerald-400 font-bold">${formatMoney(d.usdAmount, 2)}</td><td class="p-3 text-xs font-mono" dir="ltr">${esc(d.ref)}</td><td class="p-3">${statusBadge(d.status)}</td></tr>`).join('') : '<tr><td colspan="5" class="p-5 text-center text-xs text-slate-400">لا توجد طلبات شحن سابقة</td></tr>'}</tbody></table>
+        </div>`;
+      updateFundPreview();
+    }
+
+    function updateFundPreview() {
+      const amt = parseFloat(document.getElementById('pay-amount')?.value) || 0, rate = state.settings.usdToEgpRate, el = document.getElementById('fund-preview');
+      if (el) el.innerHTML = state.settings.activeCurrency === 'EGP' ? `يعادل بالدولار: <strong class="text-emerald-400">${(amt / rate).toFixed(2)} $</strong>` : `يعادل بالمصري: <strong class="text-emerald-400">${(amt * rate).toFixed(2)} ج.م</strong>`;
+    }
+
+    function submitDepositRequest(e) {
+      e.preventDefault();
+      const amt = parseFloat(document.getElementById('pay-amount').value);
+      if (amt <= 0) return;
+      const usdAmount = parseFloat((state.settings.activeCurrency === 'EGP' ? amt / state.settings.usdToEgpRate : amt).toFixed(2));
+      const u = getActiveUser();
+      state.deposits.unshift({
+        id: Math.floor(1000 + Math.random() * 9000), userId: u.id, userName: u.name,
+        method: document.getElementById('dep-method').value, usdAmount,
+        ref: document.getElementById('dep-ref').value.trim(), status: 'قيد المراجعة',
+        date: new Date().toISOString().slice(0, 16).replace('T', ' ')
+      });
+      saveState();
+      showToast('تم إرسال طلب الشحن للإدارة للمراجعة والاعتماد!', 'success');
+      renderCurrentView();
+    }
+
+    function renderAffiliate(container) {
+      const u = getActiveUser(), refLink = `${location.origin}${location.pathname}?ref=${u.refCode || 'REF10'}`;
+      container.innerHTML = `<h2 class="text-2xl font-extrabold mb-6">التسويق بالعمولة</h2><div class="grid md:grid-cols-3 gap-4 mb-6"><div class="glass p-5 rounded-2xl"><div class="text-xs text-slate-400">نسبة العمولة</div><div class="text-2xl font-extrabold text-indigo-400 mt-1">5%</div></div><div class="glass p-5 rounded-2xl"><div class="text-xs text-slate-400">المسجلون عبرك</div><div class="text-2xl font-extrabold mt-1">${u.referredCount || 0}</div></div><div class="glass p-5 rounded-2xl"><div class="text-xs text-slate-400">الأرباح القابلة للسحب</div><div class="text-2xl font-extrabold text-emerald-400 mt-1">${formatMoney(u.referralEarnings || 0, 2)}</div></div></div><div class="glass rounded-2xl p-6 space-y-4 max-w-2xl"><label class="block text-sm font-bold">رابط الإحالة الخاص بك</label><div class="flex gap-2"><input type="text" readonly value="${esc(refLink)}" dir="ltr" class="flex-1 bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm font-mono text-indigo-300"><button onclick="navigator.clipboard.writeText('${esc(refLink)}'); showToast('تم النسخ','success')" class="px-4 py-2 rounded-xl bg-slate-800 text-xs font-bold">نسخ</button></div><button onclick="claimAffiliateEarnings()" class="px-6 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-sm">تحويل الأرباح للرصيد</button></div>`;
+    }
+    function claimAffiliateEarnings() {
+      const u = getActiveUser(); if (!u.referralEarnings || u.referralEarnings <= 0) return showToast("لا توجد أرباح متاحة", "error");
+      u.balance = parseFloat((u.balance + u.referralEarnings).toFixed(4)); u.referralEarnings = 0; saveState(); showToast("تم تحويل الأرباح!", "success"); renderCurrentView();
+    }
+
+    function renderTickets(container) {
+      const myT = state.tickets.filter(t => t.userId === getActiveUser().id);
+      container.innerHTML = `<h2 class="text-2xl font-extrabold mb-6">الدعم الفني</h2><div class="grid md:grid-cols-2 gap-6"><div class="glass rounded-2xl p-6"><h3 class="font-bold mb-4">فتح تذكرة جديدة</h3><form onsubmit="createTicket(event)" class="space-y-4"><input type="text" id="t-subject" required placeholder="عنوان المشكلة..." class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm"><textarea id="t-msg" rows="4" required placeholder="التفاصيل..." class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm"></textarea><button type="submit" class="px-6 py-2.5 rounded-xl theme-btn text-white text-sm font-bold">إرسال التذكرة</button></form></div><div class="glass rounded-2xl p-6 space-y-3"><h3 class="font-bold mb-2">تذاكرك السابقة</h3>${myT.length ? myT.map(t => `<div class="p-3.5 bg-darkbg border border-borderdark rounded-xl space-y-1.5"><div class="flex justify-between"><span class="font-bold text-sm">#${t.id} - ${esc(t.subject)}</span><span class="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400">${esc(t.status)}</span></div><p class="text-xs text-slate-400">${esc(t.msg)}</p>${t.reply ? `<div class="p-2 rounded-lg bg-indigo-950/50 border border-indigo-500/30 text-xs text-indigo-200"><strong>رد الإدارة:</strong> ${esc(t.reply)}</div>` : ''}</div>`).join('') : '<p class="text-xs text-slate-400">لا توجد تذاكر حالياً</p>'}</div></div>`;
+    }
+    function createTicket(e) { e.preventDefault(); const u = getActiveUser(); state.tickets.unshift({ id: Math.floor(900 + Math.random() * 100), userId: u.id, userName: u.name, subject: document.getElementById('t-subject').value, msg: document.getElementById('t-msg').value, status: 'مفتوحة', date: new Date().toISOString().slice(0, 10), reply: '' }); saveState(); showToast("تم فتح التذكرة بنجاح", "success"); renderCurrentView(); }
+
+    function renderApiDocs(container) {
+      const u = getActiveUser();
+      container.innerHTML = `<h2 class="text-2xl font-extrabold mb-6">ربط الموزعين (API v2)</h2><div class="glass rounded-2xl p-6 space-y-4"><div><label class="text-xs text-slate-400 block mb-1">Endpoint URL</label><div class="bg-darkbg border border-borderdark rounded-xl p-3 font-mono text-sm text-indigo-300" dir="ltr">${esc(location.origin)}/api/v2</div></div><div><label class="text-xs text-slate-400 block mb-1">API Key</label><div class="bg-darkbg border border-borderdark rounded-xl p-3 font-mono text-sm text-emerald-400 flex justify-between items-center" dir="ltr"><span>${esc(u.apiKey)}</span><button onclick="navigator.clipboard.writeText('${esc(u.apiKey)}'); showToast('تم النسخ','success')" class="text-xs bg-slate-800 px-3 py-1 rounded text-white">Copy</button></div></div></div>`;
+    }
+
+    // ===================== 9. صفحات الأدمن =====================
+    function renderAdminDashboard(container) {
+      const totalRevUSD = state.orders.reduce((s, o) => s + (o.status !== 'ملغي' ? o.charge : 0), 0);
+      const pendingOrders = state.orders.filter(o => o.status === 'قيد الانتظار').length;
+      const pendingDeposits = state.deposits.filter(d => d.status === 'قيد المراجعة').length;
+      const resellersCount = state.users.filter(u => u.role === 'reseller').length;
+      container.innerHTML = `
+        <h2 class="text-2xl font-extrabold text-amber-400 mb-6"><i class="fa-solid fa-crown ml-2"></i>لوحة تحكم الإدارة</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div class="glass p-5 rounded-2xl border-r-4 border-r-emerald-500"><div class="text-xs text-slate-400">إجمالي المبيعات</div><div class="text-2xl font-extrabold mt-1">${formatMoney(totalRevUSD, 2)}</div></div>
+          <div class="glass p-5 rounded-2xl border-r-4 border-r-indigo-500"><div class="text-xs text-slate-400">الطلبات (بانتظار: ${pendingOrders})</div><div class="text-2xl font-extrabold mt-1">${state.orders.length}</div></div>
+          <div class="glass p-5 rounded-2xl border-r-4 border-r-amber-500"><div class="text-xs text-slate-400">طلبات شحن بانتظار المراجعة</div><div class="text-2xl font-extrabold mt-1 text-amber-400">${pendingDeposits}</div></div>
+          <div class="glass p-5 rounded-2xl border-r-4 border-r-purple-500"><div class="text-xs text-slate-400">الأعضاء (موزعين: ${resellersCount})</div><div class="text-2xl font-extrabold mt-1">${state.users.length}</div></div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="glass rounded-2xl p-6 space-y-2.5">
+            <h3 class="font-bold mb-3">إجراءات سريعة</h3>
+            <button onclick="navigateTab('admin-users')" class="w-full p-3 rounded-xl bg-darkbg hover:bg-slate-800 border border-borderdark text-sm font-semibold flex justify-between"><span>إنشاء موزع جديد / مراجعة الشحن</span><span class="text-amber-400">${pendingDeposits} معلق</span></button>
+            <button onclick="navigateTab('admin-providers')" class="w-full p-3 rounded-xl bg-darkbg hover:bg-slate-800 border border-borderdark text-sm font-semibold flex justify-between"><span>جلب الخدمات بالدفعات (API)</span><span class="text-sky-400">${state.providers.length} مزودين</span></button>
+            <button onclick="navigateTab('admin-settings')" class="w-full p-3 rounded-xl bg-darkbg hover:bg-slate-800 border border-borderdark text-sm font-semibold flex justify-between"><span>تغيير بيانات دخول الأدمن والأمان</span><span class="text-emerald-400">مشفر</span></button>
+          </div>
+          <div class="glass rounded-2xl p-6 space-y-2.5">
+            <h3 class="font-bold mb-3">حالة النظام</h3>
+            <div class="flex justify-between p-2.5 rounded-xl bg-darkbg text-xs"><span>الإصدار الحالي:</span><strong class="text-indigo-400">${esc(state.settings.version)}</strong></div>
+            <div class="flex justify-between p-2.5 rounded-xl bg-darkbg text-xs"><span>إجمالي الخدمات النشطة:</span><strong class="text-emerald-400">${state.services.filter(s=>s.active).length}</strong></div>
+            <div class="flex justify-between p-2.5 rounded-xl bg-darkbg text-xs"><span>حالة Firebase:</span><strong class="text-amber-400">${fbStatus}</strong></div>
+          </div>
+        </div>`;
+    }
+
+    function renderAdminOrders(container) {
+      container.innerHTML = `<h2 class="text-2xl font-extrabold mb-6">إدارة جميع الطلبات</h2><div class="glass rounded-2xl overflow-x-auto"><table class="w-full text-sm text-right"><thead class="bg-slate-900/80 text-slate-400 text-xs border-b border-borderdark"><tr><th class="p-4">ID</th><th class="p-4">العميل</th><th class="p-4">الخدمة</th><th class="p-4">التكلفة</th><th class="p-4">الحالة</th><th class="p-4">تحكم & API</th></tr></thead><tbody class="divide-y divide-borderdark">${state.orders.length ? state.orders.map(o => `<tr class="hover:bg-slate-800/40"><td class="p-4 font-bold text-indigo-400">#${o.id} ${o.externalOrderId ? `<span class="block text-[10px] text-sky-400">API #${o.externalOrderId}</span>` : ''} ${o.refillRequested ? '<span class="block text-[10px] text-amber-400">طلب تعويض!</span>' : ''}</td><td class="p-4 font-semibold">${esc(o.userName)}</td><td class="p-4 max-w-xs truncate">${esc(o.serviceName)}</td><td class="p-4 text-emerald-400 font-bold">${formatMoney(o.charge, 2)}</td><td class="p-4">${statusBadge(o.status)}</td><td class="p-4 flex flex-wrap gap-1.5 items-center"><select onchange="adminUpdateOrderStatus(${o.id}, this.value)" class="bg-darkbg border border-borderdark rounded-lg px-2 py-1 text-xs">${['قيد الانتظار','قيد التنفيذ','مكتمل','ملغي'].map(st => `<option value="${st}" ${o.status === st ? 'selected' : ''}>${st === 'ملغي' ? 'ملغي (استرداد)' : st}</option>`).join('')}</select>${o.providerId && !o.externalOrderId ? `<button onclick="dispatchOrderToProvider(${o.id})" class="px-2 py-1 rounded-lg bg-sky-600/20 text-sky-300 border border-sky-500/30 text-[11px] font-bold">إرسال API</button>` : ''}${o.externalOrderId ? `<button onclick="syncOrderStatusFromProvider(${o.id})" class="px-2 py-1 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-500/30 text-[11px] font-bold">تحديث API</button>` : ''}</td></tr>`).join('') : '<tr><td colspan="6" class="p-8 text-center text-slate-400">لا توجد طلبات حتى الآن</td></tr>'}</tbody></table></div>`;
+    }
+    function adminUpdateOrderStatus(id, st) {
+      const o = state.orders.find(x => x.id === id); if (!o) return;
+      if (st === 'ملغي' && o.status !== 'ملغي') { const u = state.users.find(x => x.id === o.userId); if (u) u.balance = parseFloat((u.balance + o.charge).toFixed(4)); showToast(`تم إلغاء #${id} واسترداد الرصيد`, "info"); }
+      else showToast(`تم تحديث #${id}`, "success");
+      o.status = st; saveState(); syncOrderToFirestore(o); renderCurrentView();
+    }
+
+    function renderAdminServices(container) {
+      container.innerHTML = `<h2 class="text-2xl font-extrabold mb-6">إدارة الخدمات (${state.services.length})</h2><div class="glass rounded-2xl p-5 mb-6"><form onsubmit="adminAddService(event)" class="grid sm:grid-cols-2 lg:grid-cols-6 gap-3"><select id="new-svc-cat" class="bg-darkbg border border-borderdark rounded-xl px-3 py-2.5 text-xs">${state.categories.map(c => `<option value="${c.id}">${esc(c.name.split('|')[0])}</option>`).join('')}</select><input type="text" id="new-svc-name" required placeholder="اسم الخدمة..." class="lg:col-span-2 bg-darkbg border border-borderdark rounded-xl px-3 py-2.5 text-xs"><input type="number" step="0.01" id="new-svc-rate" required placeholder="السعر ($) / 1K" class="bg-darkbg border border-borderdark rounded-xl px-3 py-2.5 text-xs"><input type="number" id="new-svc-min" value="100" required placeholder="أدنى كمية" class="bg-darkbg border border-borderdark rounded-xl px-3 py-2.5 text-xs"><button type="submit" class="theme-btn text-white font-bold rounded-xl px-4 py-2.5 text-xs">إضافة خدمة</button></form></div><div class="glass rounded-2xl overflow-x-auto"><table class="w-full text-sm text-right"><thead class="bg-slate-900/80 text-slate-400 text-xs border-b border-borderdark"><tr><th class="p-4">ID</th><th class="p-4">الخدمة</th><th class="p-4">السعر</th><th class="p-4">الحالة</th><th class="p-4">تحكم</th></tr></thead><tbody class="divide-y divide-borderdark">${state.services.map(s => `<tr class="hover:bg-slate-800/40"><td class="p-4 font-bold text-indigo-400">#${s.id}</td><td class="p-4 font-semibold">${esc(s.name)}</td><td class="p-4 text-emerald-400 font-bold">${formatMoney(s.rate, 2)} <span class="text-[11px] text-slate-500">($${s.rate})</span></td><td class="p-4"><span class="px-2 py-0.5 rounded text-xs font-bold ${s.active ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-700 text-slate-400'}">${s.active ? 'مفعلة' : 'معطلة'}</span></td><td class="p-4 flex gap-2"><button onclick="adminToggleService(${s.id})" class="px-2.5 py-1 rounded-lg bg-slate-800 text-xs">${s.active ? 'تعطيل' : 'تفعيل'}</button><button onclick="adminDeleteService(${s.id})" class="px-2.5 py-1 rounded-lg bg-rose-900/50 text-rose-300 text-xs"><i class="fa-solid fa-trash"></i></button></td></tr>`).join('')}</tbody></table></div>`;
+    }
+    function adminAddService(e) { e.preventDefault(); const id = Math.max(...state.services.map(s => s.id), 100) + 1; state.services.unshift({ id, catId: document.getElementById('new-svc-cat').value, name: document.getElementById('new-svc-name').value, rate: parseFloat(document.getElementById('new-svc-rate').value), min: parseInt(document.getElementById('new-svc-min').value), max: 50000, desc: "خدمة مضافة من الأدمن.", active: true }); saveState(); showToast("تمت إضافة الخدمة", "success"); renderCurrentView(); }
+    function adminToggleService(id) { const s = state.services.find(x => x.id === id); if (s) s.active = !s.active; saveState(); renderCurrentView(); }
+    function adminDeleteService(id) { state.services = state.services.filter(x => x.id !== id); saveState(); showToast("تم الحذف", "info"); renderCurrentView(); }
+
+    // إدارة الأعضاء والموزعين وطلبات الشحن
+    function renderAdminUsers(container) {
+      container.innerHTML = `
+        <h2 class="text-2xl font-extrabold mb-6">إدارة الأعضاء والموزعين وطلبات الشحن</h2>
+
+        <!-- نموذج إنشاء موزع أو عميل جديد -->
+        <div class="glass rounded-2xl p-6 mb-6 border border-emerald-500/30">
+          <h3 class="font-bold text-base text-emerald-400 mb-4"><i class="fa-solid fa-user-plus ml-1"></i> إنشاء حساب موزع (Reseller) أو عميل جديد</h3>
+          <form onsubmit="adminCreateUserOrReseller(event)" class="grid sm:grid-cols-2 lg:grid-cols-6 gap-3">
+            <input type="text" id="cu-name" required placeholder="الاسم..." class="bg-darkbg border border-borderdark rounded-xl px-3 py-2.5 text-xs">
+            <input type="text" id="cu-phone" required placeholder="رقم الهاتف..." dir="ltr" class="bg-darkbg border border-borderdark rounded-xl px-3 py-2.5 text-xs">
+            <input type="password" id="cu-pass" required minlength="4" placeholder="كلمة المرور..." dir="ltr" class="bg-darkbg border border-borderdark rounded-xl px-3 py-2.5 text-xs">
+            <select id="cu-role" onchange="document.getElementById('cu-disc').disabled = (this.value !== 'reseller')" class="bg-darkbg border border-borderdark rounded-xl px-3 py-2.5 text-xs">
+              <option value="reseller">موزع (Reseller)</option>
+              <option value="client">عميل عادي</option>
+            </select>
+            <input type="number" id="cu-disc" value="20" min="0" max="80" placeholder="نسبة الخصم %" class="bg-darkbg border border-borderdark rounded-xl px-3 py-2.5 text-xs">
+            <div class="flex gap-2">
+              <input type="number" id="cu-bal" value="0" min="0" step="0.5" placeholder="رصيد $" class="w-20 bg-darkbg border border-borderdark rounded-xl px-2 py-2.5 text-xs">
+              <button type="submit" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl px-3 py-2.5 text-xs">إنشاء</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- طلبات الشحن المعلقة -->
+        <div class="glass rounded-2xl overflow-x-auto mb-6">
+          <div class="p-4 border-b border-borderdark font-bold text-sm text-amber-400">طلبات الشحن الواردة (${state.deposits.length})</div>
+          <table class="w-full text-sm text-right">
+            <thead class="bg-slate-900/80 text-slate-400 text-xs"><tr><th class="p-3">ID</th><th class="p-3">العضو</th><th class="p-3">الوسيلة</th><th class="p-3">المبلغ</th><th class="p-3">المرجع</th><th class="p-3">الحالة</th><th class="p-3">إجراء</th></tr></thead>
+            <tbody class="divide-y divide-borderdark">
+              ${state.deposits.length ? state.deposits.map(d => `<tr>
+                <td class="p-3 font-bold">#${d.id}</td><td class="p-3">${esc(d.userName)}</td><td class="p-3 text-xs">${esc(d.method)}</td>
+                <td class="p-3 text-emerald-400 font-bold">${formatMoney(d.usdAmount, 2)}</td><td class="p-3 text-xs font-mono" dir="ltr">${esc(d.ref)}</td>
+                <td class="p-3">${statusBadge(d.status)}</td>
+                <td class="p-3 flex gap-1.5">${d.status === 'قيد المراجعة' ? `<button onclick="adminApproveDeposit(${d.id}, true)" class="px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-xs font-bold">اعتماد</button><button onclick="adminApproveDeposit(${d.id}, false)" class="px-2.5 py-1 rounded-lg bg-rose-700 text-white text-xs font-bold">رفض</button>` : '—'}</td>
+              </tr>`).join('') : '<tr><td colspan="7" class="p-5 text-center text-xs text-slate-400">لا توجد طلبات شحن</td></tr>'}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- جدول الأعضاء والموزعين -->
+        <div class="glass rounded-2xl overflow-x-auto">
+          <div class="p-4 border-b border-borderdark font-bold text-sm">قائمة الأعضاء والموزعين (${state.users.length})</div>
+          <table class="w-full text-sm text-right">
+            <thead class="bg-slate-900/80 text-slate-400 text-xs border-b border-borderdark">
+              <tr><th class="p-4">الاسم والهاتف</th><th class="p-4">الرتبة / الخصم</th><th class="p-4">الرصيد</th><th class="p-4">الحالة</th><th class="p-4">إجراءات</th></tr>
+            </thead>
+            <tbody class="divide-y divide-borderdark">
+              ${state.users.length ? state.users.map(u => `<tr class="hover:bg-slate-800/40">
+                <td class="p-4 font-semibold">${esc(u.name)}<div class="text-xs text-slate-400" dir="ltr">${esc(u.phone || u.email)}</div></td>
+                <td class="p-4">${u.role === 'reseller' ? `<span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold">موزع • خصم ${u.resellerDiscount}%</span>` : '<span class="text-xs text-slate-400">عميل عادي</span>'}</td>
+                <td class="p-4 font-extrabold text-emerald-400">${formatMoney(u.balance, 2)}</td>
+                <td class="p-4"><span class="px-2 py-0.5 rounded text-xs font-bold ${u.status === 'نشط' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'}">${esc(u.status)}</span></td>
+                <td class="p-4 flex flex-wrap gap-1.5">
+                  <button onclick="adminEditResellerModal(${u.id})" class="px-2.5 py-1 rounded-lg bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 text-xs font-bold">تعديل الخصم/الرتبة</button>
+                  <button onclick="adminAddBalance(${u.id}, 10)" class="px-2 py-1 rounded-lg bg-emerald-600/20 text-emerald-400 text-xs font-bold">+10$</button>
+                  <button onclick="adminAddBalance(${u.id}, -10)" class="px-2 py-1 rounded-lg bg-amber-600/20 text-amber-400 text-xs font-bold">-10$</button>
+                  <button onclick="adminToggleBan(${u.id})" class="px-2 py-1 rounded-lg bg-slate-800 text-xs">${u.status === 'نشط' ? 'حظر' : 'تفعيل'}</button>
+                </td>
+              </tr>`).join('') : '<tr><td colspan="5" class="p-8 text-center text-slate-400">لا يوجد أعضاء مسجلون بعد</td></tr>'}
+            </tbody>
+          </table>
+        </div>`;
+    }
+
+    async function adminCreateUserOrReseller(e) {
+      e.preventDefault();
+      const name = document.getElementById('cu-name').value.trim();
+      const phone = document.getElementById('cu-phone').value.trim();
+      const pass = document.getElementById('cu-pass').value;
+      const role = document.getElementById('cu-role').value;
+      const resellerDiscount = role === 'reseller' ? (parseFloat(document.getElementById('cu-disc').value) || 0) : 0;
+      const balance = parseFloat(document.getElementById('cu-bal').value) || 0;
+
+      if (state.users.some(u => u.phone === phone)) return showToast('رقم الهاتف مسجل مسبقاً', 'error');
+      const u = {
+        id: Date.now(), uid: 'u_' + Date.now(), name, phone, email: '', passHash: await secureHash(pass),
+        photoURL: '', role, resellerDiscount, balance, spent: 0, ordersCount: 0, status: 'نشط',
+        apiKey: 'smm_live_' + Math.random().toString(36).slice(2, 14), refCode: 'R' + Math.floor(1000 + Math.random() * 9000),
+        referralEarnings: 0, referredCount: 0
+      };
+      state.users.unshift(u); saveState();
+      showToast(`تم إنشاء حساب ${role === 'reseller' ? 'الموزع' : 'العميل'} (${name}) بنجاح!`, 'success');
+      renderCurrentView();
+    }
+
+    function adminEditResellerModal(uid) {
+      const u = state.users.find(x => x.id === uid); if (!u) return;
+      openGenericModal(`تعديل رتبة وخصم: ${esc(u.name)}`, `
+        <div class="space-y-4 text-sm">
+          <div><label class="block text-xs font-bold mb-1">نوع الحساب</label>
+            <select id="edit-u-role" class="w-full bg-darkbg border border-borderdark rounded-xl px-3 py-2 text-xs">
+              <option value="client" ${u.role !== 'reseller' ? 'selected' : ''}>عميل عادي</option>
+              <option value="reseller" ${u.role === 'reseller' ? 'selected' : ''}>موزع معتمد (Reseller)</option>
+            </select>
+          </div>
+          <div><label class="block text-xs font-bold mb-1">نسبة الخصم الخاصة بالموزع (%)</label>
+            <input type="number" id="edit-u-disc" min="0" max="80" value="${u.resellerDiscount || 0}" class="w-full bg-darkbg border border-borderdark rounded-xl px-3 py-2 text-xs">
+          </div>
+          <button onclick="saveUserResellerChanges(${u.id})" class="w-full py-2.5 rounded-xl theme-btn text-white font-bold text-xs">حفظ التغييرات</button>
+        </div>
+      `);
+    }
+
+    function saveUserResellerChanges(uid) {
+      const u = state.users.find(x => x.id === uid); if (!u) return;
+      u.role = document.getElementById('edit-u-role').value;
+      u.resellerDiscount = u.role === 'reseller' ? Math.min(80, Math.max(0, parseFloat(document.getElementById('edit-u-disc').value) || 0)) : 0;
+      saveState(); closeGenericModal(); showToast('تم تحديث رتبة وخصم العضو', 'success'); renderCurrentView();
+    }
+
+    function adminApproveDeposit(depId, approve) {
+      const d = state.deposits.find(x => x.id === depId); if (!d || d.status !== 'قيد المراجعة') return;
+      if (approve) {
+        const u = state.users.find(x => x.id === d.userId);
+        if (u) u.balance = parseFloat((u.balance + d.usdAmount).toFixed(4));
+        d.status = 'معتمد';
+        showToast(`تم اعتماد شحن ${formatMoney(d.usdAmount, 2)} للعضو ${d.userName}`, 'success');
+      } else { d.status = 'مرفوض'; showToast('تم رفض طلب الشحن', 'info'); }
+      saveState(); renderCurrentView();
+    }
+
+    function adminAddBalance(id, amtUSD) { const u = state.users.find(x => x.id === id); if (u) { u.balance = Math.max(0, parseFloat((u.balance + amtUSD).toFixed(2))); saveState(); showToast("تم تعديل الرصيد", "success"); renderCurrentView(); } }
+    function adminToggleBan(id) { const u = state.users.find(x => x.id === id); if (u) { u.status = u.status === 'نشط' ? 'محظور' : 'نشط'; saveState(); renderCurrentView(); } }
+
+    function renderAdminTickets(container) {
+      container.innerHTML = `<h2 class="text-2xl font-extrabold mb-6">إدارة تذاكر الدعم</h2><div class="space-y-4">${state.tickets.length ? state.tickets.map(t => `<div class="glass rounded-2xl p-5 space-y-3"><div class="flex justify-between items-center"><div class="font-bold">#${t.id} - ${esc(t.subject)} <span class="text-xs text-slate-400">(${esc(t.userName || '')})</span></div><span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${t.status === 'مفتوحة' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-700 text-slate-300'}">${esc(t.status)}</span></div><p class="text-xs text-slate-300 bg-darkbg p-3 rounded-xl">${esc(t.msg)}</p><div class="flex gap-2"><input type="text" id="reply-${t.id}" value="${esc(t.reply || '')}" placeholder="اكتب رد الإدارة هنا..." class="flex-1 bg-darkbg border border-borderdark rounded-xl px-3 py-2 text-xs"><button onclick="adminReplyTicket(${t.id})" class="px-4 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-xs">إرسال وإغلاق</button></div></div>`).join('') : '<div class="glass p-6 rounded-2xl text-center text-sm text-slate-400">لا توجد تذاكر دعم حالياً</div>'}</div>`;
+    }
+    function adminReplyTicket(id) { const t = state.tickets.find(x => x.id === id); if (!t) return; t.reply = document.getElementById(`reply-${id}`).value; t.status = 'مغلقة'; saveState(); showToast("تم إرسال الرد وإغلاق التذكرة", "success"); renderCurrentView(); }
+
+    function renderAdminProviders(container) {
+      container.innerHTML = `
+        <div class="mb-6 flex flex-wrap justify-between items-center gap-3">
+          <div><h2 class="text-2xl font-extrabold">مزودو الخدمة (API Providers)</h2><p class="text-slate-400 text-sm">ربط آمن عبر Cloudflare Worker مع الجلب بالدفعات وهامش ربح تلقائي</p></div>
+          <button onclick="showWorkerCodeModal()" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-extrabold shadow-lg"><i class="fa-solid fa-shield-halved ml-1"></i> كود Cloudflare Worker المحصن</button>
+        </div>
+        <div class="glass rounded-2xl p-5 mb-6">
+          <h3 class="font-bold text-sm mb-3 text-indigo-300">إضافة مزود API جديد</h3>
+          <form onsubmit="adminAddProvider(event)" class="grid sm:grid-cols-2 lg:grid-cols-6 gap-3">
+            <input type="text" id="prov-name" required placeholder="اسم المزود" class="bg-darkbg border border-borderdark rounded-xl px-3 py-2 text-xs">
+            <input type="url" id="prov-api" required placeholder="رابط API (https://.../api/v2)" dir="ltr" class="bg-darkbg border border-borderdark rounded-xl px-3 py-2 text-xs">
+            <input type="url" id="prov-proxy" required placeholder="رابط Cloudflare Worker" dir="ltr" class="bg-darkbg border border-borderdark rounded-xl px-3 py-2 text-xs">
+            <select id="prov-slot" class="bg-darkbg border border-borderdark rounded-xl px-3 py-2 text-xs"><option value="1">مفتاح KEY_1</option><option value="2">مفتاح KEY_2</option></select>
+            <input type="number" id="prov-markup" value="30" min="0" max="500" placeholder="الربح %" class="bg-darkbg border border-borderdark rounded-xl px-3 py-2 text-xs">
+            <button type="submit" class="theme-btn text-white font-bold rounded-xl px-4 py-2 text-xs">+ إضافة المزود</button>
+          </form>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          ${state.providers.map(p => `<div class="glass rounded-2xl p-5 space-y-3 border border-borderdark">
+            <div class="flex justify-between items-center"><span class="font-bold text-lg">${esc(p.name)}</span><span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${p.status === 'متصل حقيقي' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-800 text-slate-300'}">${esc(p.status)}</span></div>
+            <div class="text-xs text-slate-400 space-y-1"><div class="font-mono truncate" dir="ltr">API: ${esc(p.targetApiUrl)}</div><div class="font-mono truncate text-sky-400" dir="ltr">Worker: ${p.proxyUrl ? esc(p.proxyUrl) : 'غير مضاف'} (KEY_${p.slot || 1})</div></div>
+            <div class="flex justify-between items-center text-sm pt-1"><span>الرصيد: <strong class="text-emerald-400">${esc(p.balance)}</strong></span><span>هامش الربح: <strong class="text-amber-400">+${p.markupPercent ?? 30}%</strong></span></div>
+            <div class="flex flex-wrap gap-2 pt-2 border-t border-borderdark">
+              <button onclick="syncProviderBalance(${p.id})" class="flex-1 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold">فحص الرصيد</button>
+              <button onclick="openProviderSyncModal(${p.id})" class="flex-1 py-2 rounded-xl theme-btn text-white text-xs font-bold">جلب بالدفعات</button>
+              <button onclick="adminDeleteProvider(${p.id})" class="px-3 py-2 rounded-xl bg-rose-900/40 text-rose-300 text-xs"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </div>`).join('')}
+        </div>`;
+    }
+    function adminAddProvider(e) {
+      e.preventDefault(); const id = Math.max(...state.providers.map(p => p.id), 0) + 1;
+      state.providers.unshift({ id, name: document.getElementById('prov-name').value.trim(), targetApiUrl: document.getElementById('prov-api').value.trim(), proxyUrl: document.getElementById('prov-proxy').value.trim(), slot: parseInt(document.getElementById('prov-slot').value) || 1, markupPercent: parseFloat(document.getElementById('prov-markup').value) || 30, balance: '—', status: 'جاهز للربط' });
+      saveState(); showToast('تمت إضافة المزود', 'success'); renderCurrentView();
+    }
+    function adminDeleteProvider(id) { state.providers = state.providers.filter(p => p.id !== id); saveState(); renderCurrentView(); }
+
+    // ===================== 10. مكتبة الباتشات الـ 18 =====================
+    function renderAdminPatch(container) {
+      const cats = [{ id: 'all', label: `الكل (${PATCH_PRESETS.length})` }, { id: 'system', label: 'النظام و Firebase و API' }, { id: 'services', label: 'الخدمات والمنصات' }, { id: 'promo', label: 'العروض والربحية' }, { id: 'ui', label: 'التصميم والدعم' }];
+      const filtered = patchFilterCat === 'all' ? PATCH_PRESETS : PATCH_PRESETS.filter(p => p.cat === patchFilterCat);
+      container.innerHTML = `
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div><h2 class="text-2xl font-extrabold text-emerald-400"><i class="fa-solid fa-puzzle-piece ml-2"></i>مكتبة الباتشات ومحرك التطوير</h2><p class="text-slate-400 text-sm">${PATCH_PRESETS.length} باتش جاهز + محرر Hotfix + Snapshots</p></div>
+          <button onclick="exportSystemBackup()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700"><i class="fa-solid fa-download ml-1"></i> تصدير نسخة احتياطية</button>
+        </div>
+        <div class="flex flex-wrap gap-2 mb-4">${cats.map(c => `<button onclick="patchFilterCat='${c.id}'; renderCurrentView();" class="px-3.5 py-1.5 rounded-xl text-xs font-bold border transition ${patchFilterCat === c.id ? 'theme-btn text-white border-transparent' : 'bg-cardbg border-borderdark text-slate-300'}">${c.label}</button>`).join('')}</div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+          ${filtered.map(p => {
+            const realIdx = PATCH_PRESETS.indexOf(p);
+            return `<div class="glass rounded-2xl p-4 flex flex-col justify-between gap-3 border border-borderdark hover:border-indigo-500/50 transition"><div><div class="flex justify-between items-start gap-2 mb-1.5"><span class="font-bold text-sm text-white">${esc(p.title)}</span><span class="px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 text-[10px] font-bold shrink-0">${esc(p.badge)}</span></div><p class="text-xs text-slate-400">${esc(p.desc)}</p></div><div class="flex gap-2 pt-2 border-t border-borderdark"><button onclick="applyPresetPatch(${realIdx})" class="flex-1 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold">تطبيق فوري</button><button onclick="loadPresetToEditor(${realIdx})" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 text-xs font-bold">تعديل الكود</button></div></div>`;
+          }).join('')}
+        </div>
+        <div class="grid lg:grid-cols-2 gap-6 mb-6">
+          <div class="glass rounded-2xl p-6 space-y-4">
+            <h3 class="font-bold text-base"><i class="fa-solid fa-file-zipper text-amber-400 ml-1"></i> تثبيت ملف باتش أو استعادة نسخة (.json)</h3>
+            <label class="block border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-2xl p-6 text-center cursor-pointer bg-darkbg/60"><input type="file" id="patch-file-input" accept=".json,.patch,.zip" onchange="onPatchFileSelect(this)" class="hidden" /><i class="fa-solid fa-cloud-arrow-up text-3xl text-indigo-400 mb-2"></i><div class="text-sm font-bold" id="patch-file-label">اضغط لاختيار ملف .json</div></label>
+            <div class="flex gap-3"><input type="text" id="patch-ver-input" value="v5.5.0" class="flex-1 bg-darkbg border border-borderdark rounded-xl px-3 py-2 text-xs"><button onclick="runPatchFromFile()" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold">تنفيذ الملف</button></div>
+          </div>
+          <div class="glass rounded-2xl p-6 space-y-3">
+            <h3 class="font-bold text-base"><i class="fa-solid fa-terminal text-indigo-400 ml-1"></i> محرر Hotfix JSON</h3>
+            <textarea id="hotfix-json" rows="7" dir="ltr" class="w-full bg-darkbg border border-borderdark rounded-xl p-3 font-mono text-xs text-emerald-400">${JSON.stringify(PATCH_PRESETS[0].payload, null, 2)}</textarea>
+            <button onclick="applyHotfixJson()" class="w-full py-2.5 rounded-xl bg-amber-500 text-slate-950 font-extrabold text-xs">تطبيق الـ Hotfix الآن</button>
+          </div>
+        </div>
+        <div id="patch-terminal-box" class="hidden glass rounded-2xl p-5 mb-6 border border-emerald-500/30"><div class="flex justify-between items-center mb-2 text-xs font-bold"><span class="text-emerald-400"><i class="fa-solid fa-spinner fa-spin ml-1" id="patch-spinner"></i> سجل التنفيذ</span><span id="patch-progress-pct">0%</span></div><div class="w-full bg-slate-900 rounded-full h-2 mb-3"><div id="patch-progress-bar" class="theme-btn h-2" style="width: 0%"></div></div><div id="patch-log" class="bg-black/70 rounded-xl p-3 font-mono text-xs text-slate-300 space-y-1 max-h-44 overflow-y-auto" dir="ltr"></div></div>
+        <div class="glass rounded-2xl overflow-x-auto"><table class="w-full text-sm text-right"><thead class="bg-slate-900/80 text-slate-400 text-xs border-b border-borderdark"><tr><th class="p-4">الإصدار</th><th class="p-4">التاريخ</th><th class="p-4">ملاحظات</th><th class="p-4">إجراء</th></tr></thead><tbody class="divide-y divide-borderdark">${state.patchHistory.map((p, idx) => `<tr><td class="p-4 font-bold text-indigo-400">${esc(p.version)}</td><td class="p-4 text-xs text-slate-400" dir="ltr">${esc(p.date)}</td><td class="p-4 text-xs">${esc(p.notes)}</td><td class="p-4">${idx > 0 ? `<button onclick="rollbackPatch(${idx})" class="px-3 py-1 rounded-lg bg-amber-500/20 text-amber-300 text-xs font-bold">استعادة (Rollback)</button>` : '<span class="text-xs text-emerald-400">الحالي</span>'}</td></tr>`).join('')}</tbody></table></div>`;
+    }
+    function loadPresetToEditor(idx) { const p = PATCH_PRESETS[idx]; if (!p) return; const ed = document.getElementById('hotfix-json'); ed.value = JSON.stringify(p.payload, null, 2); ed.scrollIntoView({ behavior: 'smooth', block: 'center' }); showToast(`تم تحميل "${p.title}"`, "info"); }
+    function applyPresetPatch(idx) { const p = PATCH_PRESETS[idx]; if (p) runPatchInstaller(structuredClone(p.payload)); }
+    function onPatchFileSelect(input) { if (input.files?.[0]) { selectedPatchFile = input.files[0]; document.getElementById('patch-file-label').innerHTML = `<span class="text-emerald-400">${esc(selectedPatchFile.name)}</span>`; } }
+    function runPatchFromFile() {
+      if (selectedPatchFile?.name.endsWith('.json')) {
+        const r = new FileReader(); r.onload = () => { try { const parsed = JSON.parse(r.result); if (parsed.services && parsed.settings && parsed.adminAuth) { state = parsed; saveState(); initFirebaseIfEnabled(); showToast("تمت الاستعادة!", "success"); renderCurrentView(); } else runPatchInstaller(parsed); } catch { showToast("ملف غير صالح", "error"); } }; r.readAsText(selectedPatchFile);
+      } else runPatchInstaller({ version: document.getElementById('patch-ver-input').value || 'v5.5.0', notes: 'تحديث مخصص' });
+    }
+    function exportSystemBackup() { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' })); a.download = `smm-backup-${state.settings.version}.json`; a.click(); }
+
+    function applyPatchPayload(patch) {
+      const logs = [], snapshot = { settings: structuredClone(state.settings), categories: structuredClone(state.categories), services: structuredClone(state.services), coupons: structuredClone(state.coupons), users: structuredClone(state.users), providers: structuredClone(state.providers) };
+      if (patch.settings && typeof patch.settings === 'object') { const { firebaseConfig, ...rest } = patch.settings; Object.assign(state.settings, rest); if (firebaseConfig) state.settings.firebaseConfig = { ...state.settings.firebaseConfig, ...firebaseConfig }; logs.push(`[SETTINGS] Applied`); }
+      if (patch.usdToEgpRate) state.settings.usdToEgpRate = parseFloat(patch.usdToEgpRate);
+      if (patch.announcement) state.settings.announcement = patch.announcement;
+      if (patch.customCss !== undefined) state.settings.customCss = patch.customCss;
+      if (typeof patch.priceAdjustmentPercent === 'number' && patch.priceAdjustmentPercent !== 0) { const f = 1 + patch.priceAdjustmentPercent / 100; state.services.forEach(s => { s.rate = Math.max(0.01, parseFloat((s.rate * f).toFixed(3))); }); logs.push(`[PRICING] ${patch.priceAdjustmentPercent}%`); }
+      if (Array.isArray(patch.addCategories)) patch.addCategories.forEach(c => { if (!state.categories.some(x => x.id === c.id)) state.categories.push(c); });
+      if (Array.isArray(patch.addServices)) patch.addServices.forEach(svc => { const i = state.services.findIndex(s => s.id === svc.id); if (i >= 0) state.services[i] = { ...state.services[i], ...svc }; else state.services.unshift(svc); });
+      if (Array.isArray(patch.addCoupons)) patch.addCoupons.forEach(c => { const i = state.coupons.findIndex(x => x.code.toUpperCase() === c.code.toUpperCase()); if (i >= 0) state.coupons[i] = c; else state.coupons.unshift(c); });
+      if (Array.isArray(patch.addProviders)) patch.addProviders.forEach(pr => { const i = state.providers.findIndex(x => x.id === pr.id); if (i >= 0) state.providers[i] = pr; else state.providers.unshift(pr); });
+      if (typeof patch.bonusAllUsersUSD === 'number' && patch.bonusAllUsersUSD > 0) state.users.filter(u => u.status === 'نشط').forEach(u => { u.balance = parseFloat((u.balance + patch.bonusAllUsersUSD).toFixed(2)); });
+      const newVer = patch.version || state.settings.version; state.settings.version = newVer;
+      state.patchHistory.unshift({ version: newVer, date: new Date().toISOString().slice(0, 10), notes: patch.notes || 'باتش', snapshot });
+      if (state.patchHistory.length > 8) state.patchHistory.slice(8).forEach(h => h.snapshot = null);
+      return logs;
+    }
+
+    function runPatchInstaller(patchData) {
+      const box = document.getElementById('patch-terminal-box'), log = document.getElementById('patch-log'), bar = document.getElementById('patch-progress-bar'), pct = document.getElementById('patch-progress-pct');
+      box.classList.remove('hidden'); log.innerHTML = '';
+      const appliedLogs = applyPatchPayload(patchData), steps = [[25, `[BACKUP] Snapshot OK`], ...appliedLogs.map((l, i) => [40 + i * 15, l]), [100, `[SUCCESS] Updated!`]];
+      steps.forEach(([progress, text], i) => {
+        setTimeout(async () => {
+          bar.style.width = progress + '%'; pct.textContent = progress + '%'; log.innerHTML += `<div>${esc(text)}</div>`;
+          if (progress === 100) {
+            document.getElementById('patch-spinner').className = 'fa-solid fa-circle-check ml-1';
+            selectedPatchFile = null; saveState(); await initFirebaseIfEnabled();
+            showToast(`تم تطبيق الباتش بنجاح!`, "success"); setTimeout(() => renderCurrentView(), 500);
+          }
+        }, (i + 1) * 260);
+      });
+    }
+    function applyHotfixJson() { try { runPatchInstaller(JSON.parse(document.getElementById('hotfix-json').value)); } catch { showToast("خطأ JSON!", "error"); } }
+    function rollbackPatch(idx) {
+      const entry = state.patchHistory[idx]; if (!entry || !confirm(`استعادة ${entry.version}؟`)) return;
+      const snap = state.patchHistory.slice(0, idx).reverse().find(h => h.snapshot)?.snapshot;
+      if (snap) { Object.assign(state, { settings: structuredClone(snap.settings), categories: structuredClone(snap.categories), services: structuredClone(snap.services), coupons: structuredClone(snap.coupons), users: structuredClone(snap.users), providers: structuredClone(snap.providers || state.providers) }); }
+      else state.settings.version = entry.version;
+      state.patchHistory.unshift({ version: state.settings.version, date: new Date().toISOString().slice(0, 10), notes: `استعادة (${entry.version})`, snapshot: null });
+      saveState(); initFirebaseIfEnabled(); showToast("تمت الاستعادة", "info"); renderCurrentView();
+    }
+
+    // ===================== 11. الإعدادات وتغيير بيانات الأدمن =====================
+    function renderAdminSettings(container) {
+      const cfg = state.settings.firebaseConfig || {};
+      container.innerHTML = `
+        <h2 class="text-2xl font-extrabold mb-6">إعدادات الموقع، الأمان، و Firebase</h2>
+        <div class="grid lg:grid-cols-2 gap-6">
+          <div class="space-y-6">
+            <!-- إعدادات الموقع -->
+            <div class="glass rounded-2xl p-6">
+              <form onsubmit="saveAdminSettings(event)" class="space-y-4">
+                <div><label class="block text-sm font-bold mb-1.5">اسم الموقع</label><input type="text" id="set-name" value="${esc(state.settings.siteName)}" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm"></div>
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <div><label class="block text-sm font-bold mb-1.5">العملة الافتراضية</label><select id="set-curr" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm"><option value="EGP" ${state.settings.defaultCurrency === 'EGP' ? 'selected' : ''}>ج.م EGP</option><option value="USD" ${state.settings.defaultCurrency === 'USD' ? 'selected' : ''}>$ USD</option></select></div>
+                  <div><label class="block text-sm font-bold mb-1.5">سعر الصرف</label><input type="number" step="0.1" id="set-rate" value="${state.settings.usdToEgpRate}" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm"></div>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <div><label class="block text-sm font-bold mb-1.5">الثيم</label><select id="set-theme" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm"><option value="indigo" ${state.settings.themeColor === 'indigo' ? 'selected' : ''}>Indigo</option><option value="emerald" ${state.settings.themeColor === 'emerald' ? 'selected' : ''}>Emerald</option><option value="rose" ${state.settings.themeColor === 'rose' ? 'selected' : ''}>Rose</option><option value="amber" ${state.settings.themeColor === 'amber' ? 'selected' : ''}>Amber</option><option value="cyan" ${state.settings.themeColor === 'cyan' ? 'selected' : ''}>Cyan</option></select></div>
+                  <div><label class="block text-sm font-bold mb-1.5">رقم واتساب & التحويل</label><input type="text" id="set-wa" dir="ltr" placeholder="2010xxxxxxxx" value="${esc(state.settings.whatsappNumber)}" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm"></div>
+                </div>
+                <div><label class="block text-sm font-bold mb-1.5">رمز أمان Worker (X-Admin-Secret)</label><input type="password" id="set-wsec" dir="ltr" placeholder="يطابق ADMIN_SECRET في Cloudflare" value="${esc(state.settings.workerAdminSecret || '')}" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm"></div>
+                <div><label class="block text-sm font-bold mb-1.5">شريط الإعلانات</label><input type="text" id="set-ann" value="${esc(state.settings.announcement)}" class="w-full bg-darkbg border border-borderdark rounded-xl px-4 py-2.5 text-sm"></div>
+                <div class="grid grid-cols-2 gap-2.5 pt-1 text-xs">
+                  <label class="flex items-center gap-2"><input type="checkbox" id="set-maint" ${state.settings.maintenanceMode ? 'checked' : ''}> وضع الصيانة</label>
+                  <label class="flex items-center gap-2"><input type="checkbox" id="set-vip" ${state.settings.vipEnabled ? 'checked' : ''}> نظام VIP</label>
+                  <label class="flex items-center gap-2"><input type="checkbox" id="set-drip" ${state.settings.dripFeedEnabled ? 'checked' : ''}> Drip-Feed</label>
+                  <label class="flex items-center gap-2"><input type="checkbox" id="set-aff" ${state.settings.affiliateEnabled ? 'checked' : ''}> نظام الإحالة</label>
+                  <label class="flex items-center gap-2 col-span-2 text-sky-300"><input type="checkbox" id="set-autodisp" ${state.settings.autoDispatchApi ? 'checked' : ''}> إرسال الطلبات تلقائياً للمزود عبر Worker</label>
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm">حفظ الإعدادات</button>
+              </form>
+            </div>
+
+            <!-- تغيير بيانات دخول الأدمن -->
+            <div class="glass rounded-2xl p-6 border border-rose-500/30 space-y-3">
+              <h3 class="font-bold text-base text-rose-400"><i class="fa-solid fa-key ml-1"></i> تغيير بيانات دخول الأدمن (رقم الهاتف وكلمة المرور)</h3>
+              <form onsubmit="changeAdminCredentials(event)" class="space-y-3 text-xs">
+                <input type="password" id="adm-old-pass" required placeholder="كلمة المرور الحالية للتحقق" dir="ltr" class="w-full bg-darkbg border border-borderdark rounded-xl px-3 py-2.5">
+                <input type="tel" id="adm-new-phone" required placeholder="رقم هاتف الأدمن الجديد" dir="ltr" class="w-full bg-darkbg border border-borderdark rounded-xl px-3 py-2.5">
+                <input type="password" id="adm-new-pass" required minlength="4" placeholder="كلمة المرور الجديدة" dir="ltr" class="w-full bg-darkbg border border-borderdark rounded-xl px-3 py-2.5">
+                <button type="submit" class="w-full py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold">تحديث بيانات الدخول المشفرة</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="glass rounded-2xl p-6 space-y-3 border border-amber-500/30">
+              <div class="flex justify-between items-center"><h3 class="font-bold text-base text-amber-400"><i class="fa-solid fa-fire ml-1"></i> Firebase و Google Auth</h3><span class="text-xs px-2 py-0.5 rounded bg-slate-800">${fbStatus}</span></div>
+              <form onsubmit="saveFirebaseSettings(event)" class="space-y-2.5 text-xs">
+                <div class="flex gap-4 pb-1"><label class="flex items-center gap-1.5"><input type="checkbox" id="fb-en" ${state.settings.firebaseEnabled ? 'checked' : ''}> تفعيل Firebase</label><label class="flex items-center gap-1.5"><input type="checkbox" id="fb-google" ${state.settings.googleLoginEnabled ? 'checked' : ''}> دخول جوجل</label><label class="flex items-center gap-1.5"><input type="checkbox" id="fb-fs" ${state.settings.firestoreSync ? 'checked' : ''}> Firestore</label></div>
+                <input type="text" id="fb-apiKey" dir="ltr" placeholder="apiKey" value="${esc(cfg.apiKey || '')}" class="w-full bg-darkbg border border-borderdark rounded-lg px-3 py-2 font-mono">
+                <input type="text" id="fb-authDomain" dir="ltr" placeholder="authDomain" value="${esc(cfg.authDomain || '')}" class="w-full bg-darkbg border border-borderdark rounded-lg px-3 py-2 font-mono">
+                <div class="grid grid-cols-2 gap-2"><input type="text" id="fb-projectId" dir="ltr" placeholder="projectId" value="${esc(cfg.projectId || '')}" class="bg-darkbg border border-borderdark rounded-lg px-3 py-2 font-mono"><input type="text" id="fb-appId" dir="ltr" placeholder="appId" value="${esc(cfg.appId || '')}" class="bg-darkbg border border-borderdark rounded-lg px-3 py-2 font-mono"></div>
+                <button type="submit" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold">حفظ والاتصال بـ Firebase</button>
+              </form>
+            </div>
+
+            <div class="glass rounded-2xl p-6 space-y-4">
+              <h3 class="font-bold text-base">إدارة أكواد الخصم</h3>
+              <form onsubmit="adminAddCoupon(event)" class="flex gap-2"><input type="text" id="new-cp-code" required placeholder="الكود" class="flex-1 bg-darkbg border border-borderdark rounded-xl px-3 py-2 text-xs uppercase" dir="ltr"><input type="number" id="new-cp-disc" required min="1" max="90" placeholder="%" class="w-20 bg-darkbg border border-borderdark rounded-xl px-3 py-2 text-xs"><button type="submit" class="px-4 py-2 rounded-xl theme-btn text-white text-xs font-bold">إضافة</button></form>
+              <div class="space-y-2 max-h-40 overflow-y-auto">${state.coupons.map((c, idx) => `<div class="flex items-center justify-between p-2.5 rounded-xl bg-darkbg border border-borderdark text-xs"><div><strong class="text-emerald-400 font-mono">${esc(c.code)}</strong> • ${c.discount}%</div><button onclick="adminDeleteCoupon(${idx})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button></div>`).join('')}</div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    async function changeAdminCredentials(e) {
+      e.preventDefault();
+      await ensureAdminCredsInitialized();
+      const oldHash = await secureHash(document.getElementById('adm-old-pass').value);
+      if (oldHash !== state.adminAuth.passHash) return showToast('كلمة المرور الحالية غير صحيحة!', 'error');
+      const newPhone = document.getElementById('adm-new-phone').value.trim();
+      const newPass = document.getElementById('adm-new-pass').value;
+      state.adminAuth = { initialized: true, phoneHash: await secureHash(newPhone), passHash: await secureHash(newPass) };
+      saveState();
+      showToast('تم تحديث رقم هاتف وكلمة مرور الأدمن بنجاح وتشفيرهما!', 'success');
+      e.target.reset();
+    }
+
+    async function saveFirebaseSettings(e) {
+      e.preventDefault();
+      state.settings.firebaseEnabled = document.getElementById('fb-en').checked;
+      state.settings.googleLoginEnabled = document.getElementById('fb-google').checked;
+      state.settings.firestoreSync = document.getElementById('fb-fs').checked;
+      state.settings.firebaseConfig = { ...state.settings.firebaseConfig, apiKey: document.getElementById('fb-apiKey').value.trim(), authDomain: document.getElementById('fb-authDomain').value.trim(), projectId: document.getElementById('fb-projectId').value.trim(), appId: document.getElementById('fb-appId').value.trim() };
+      saveState(); const ok = await initFirebaseIfEnabled();
+      showToast(ok ? "تم الاتصال بـ Firebase!" : "تم حفظ الإعدادات", ok ? "success" : "info"); renderCurrentView();
+    }
+
+    function adminAddCoupon(e) { e.preventDefault(); state.coupons.unshift({ code: document.getElementById('new-cp-code').value.trim().toUpperCase(), discount: parseInt(document.getElementById('new-cp-disc').value), active: true, minUSD: 0.5 }); saveState(); showToast("تمت إضافة الكوبون", "success"); renderCurrentView(); }
+    function adminDeleteCoupon(idx) { state.coupons.splice(idx, 1); saveState(); renderCurrentView(); }
+
+    function saveAdminSettings(e) {
+      e.preventDefault();
+      state.settings.siteName = document.getElementById('set-name').value;
+      state.settings.defaultCurrency = document.getElementById('set-curr').value;
+      state.settings.activeCurrency = state.settings.defaultCurrency;
+      state.settings.usdToEgpRate = parseFloat(document.getElementById('set-rate').value) || 50;
+      state.settings.themeColor = document.getElementById('set-theme').value;
+      state.settings.whatsappNumber = document.getElementById('set-wa').value.trim();
+      state.settings.workerAdminSecret = document.getElementById('set-wsec').value.trim();
+      state.settings.announcement = document.getElementById('set-ann').value;
+      state.settings.maintenanceMode = document.getElementById('set-maint').checked;
+      state.settings.vipEnabled = document.getElementById('set-vip').checked;
+      state.settings.dripFeedEnabled = document.getElementById('set-drip').checked;
+      state.settings.affiliateEnabled = document.getElementById('set-aff').checked;
+      state.settings.autoDispatchApi = document.getElementById('set-autodisp').checked;
+      saveState(); showToast("تم حفظ الإعدادات بنجاح", "success");
+    }
+
+    // ===================== التشغيل الأولي =====================
+    (async function boot() {
+      await ensureAdminCredsInitialized();
+      updateGlobalUI();
+      initFirebaseIfEnabled();
+      if (state.adminSession) enterAdminPanel();
+      else if (state.authSession.loggedIn && getActiveUser()) enterClientPanel();
+      else goHome();
+    })();
+  </script>
+</body>
+</html>
+ 
